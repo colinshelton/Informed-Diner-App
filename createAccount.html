@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
     />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
     <link rel="stylesheet" href="createAccount.css" />
   </head>
   <body>
@@ -22,44 +26,48 @@
           </h2>
         </div>
       </div>
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input
-            class="input"
-            id="emailInput"
-            type="email"
-            placeholder="Email"
-          />
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <span class="icon is-large is-right">
-            <i class="fas fa-check"></i>
-          </span>
-        </p>
-      </div>
-      <div class="field">
-        <p class="control has-icons-left">
-          <input
-            class="input"
-            id="passwordInput"
-            type="password"
-            placeholder="Password"
-          />
-          <span class="icon is-small is-left">
-            <i class="fas fa-lock"></i>
-          </span>
-        </p>
-      </div>
-      <div class="field">
-        <p class="control">
-          <button class="button is-success" id="submit">
-            Submit
-          </button>
-          <button class="button is-success" id="google">
-            Continue with Google
-          </button>
-        </p>
+      <div class="columns">
+        <div class="column">
+          <!-- PLACE ICON HERE -->
+        </div>
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input
+                class="input"
+                id="emailInput"
+                type="email"
+                placeholder="Email"
+              />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input
+                class="input"
+                id="passwordInput"
+                type="password"
+                placeholder="Password"
+              />
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <button class="button is-success" id="submit">
+                Submit
+              </button>
+              <button class="button is-success" id="google">
+                Continue with Google
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   </body>
