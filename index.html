@@ -1,57 +1,71 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Informed Diner</title>
     <!-- Bulma CSS Framework -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
     <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
     <!-- Local links -->
-    <script src="loginPage.js"></script>
+    <script src="Javascript/index.js"></script>
     <!-- login with Google -->
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="profile email" />
+    <meta
+      name="google-signin-client_id"
+      content="YOUR_CLIENT_ID.apps.googleusercontent.com"
+    />
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- <img src="assets/logo.png" alt="Informed Diner Logo"> -->
     <section class="section">
-        <div class="container">
-            <div class="container is-fluid">
-                <div class="notification">
-                    <h2 class="title">
-                        Log in to Informed Diner
-                    </h2>
-                    <div class="field">
-                        <p class="control has-icons-left has-icons-right">
-                            <input class="input" type="email" placeholder="Email">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                            </span>
-                        </p>
-                    </div>
-                    <div class="field">
-                        <p class="control has-icons-left">
-                            <input class="input" type="password" placeholder="Password">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </p>
-                    </div>
-                    <input class="button is-fullwidth is-info is-outlined" type="submit" value="Continue">
-                    <br>
-                    <!-- Sign-In with Google -->
-                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                </div>
+      <div class="container">
+        <div class="container is-fluid">
+          <div class="notification">
+            <h2 class="title">
+              Log in to Informed Diner
+            </h2>
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="Email" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right"> </span>
+              </p>
             </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" placeholder="Password" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <input
+              class="button is-fullwidth is-info is-outlined"
+              type="submit"
+              value="Continue"
+            />
+            <br />
+            <!-- Sign-In with Google -->
+            <div
+              class="g-signin2"
+              data-onsuccess="onSignIn"
+              data-theme="dark"
+            ></div>
+          </div>
         </div>
+      </div>
     </section>
-</body>
-
+  </body>
 </html>
