@@ -1,0 +1,27 @@
+[type="radio"]:checked+span:after {
+    background-color: #F44336;
+    border: 2px solid #F44336;
+}
+
+[type="radio"]:not(:checked)+span:before {
+    border: 2px solid #444;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #ff9a93;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #f44336;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background: #F44336;
+    background-color: #F44336;
+}
+
+/* #restImageDiv {
+    background-image: url("https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg");
+    width: 50vw;
+    height: 40vh;
+} */
