@@ -1,0 +1,9 @@
+.input {
+  max-width: 86%;
+  align-content: right;
+  text-align: left;
+}
+#submit,
+#google {
+  width: 42.59%;
+}
