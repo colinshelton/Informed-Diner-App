@@ -13,7 +13,8 @@ const scriptLinks = [
     // -- CSS LINKS IN ORDER THEY'LL BE ADDED TO THE HEAD --------------------------------------------------//
     {name: 'Bulma 0.9.0 CSS', type: 'css', cdn: 'https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css'},
     {name: 'Materialize 1.0.0 CSS', type: 'css', cdn: 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'},
-    {name: "UIKit 3.5.4 CSS", type: "css", cdn: 'https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css'},
+    {name: 'Matarial Icons for Materialize', type: 'css', cdn: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+    {name: 'UIKit 3.5.4 CSS', type: 'css', cdn: 'https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css' },
     
     // CUSTOM CSS ADDITIONS SECTION:
     // BELOW THIS POINT, PLACE ANY CUSTOM LINKS/STYLESHEETS THAT SHOULD ADDED TO THE HEAD LAST .... 
@@ -30,11 +31,11 @@ const scriptLinks = [
     {name: 'JQuery 3.5.1 JavaScript', type: 'js', cdn: 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'}, 
     {name: 'Echarts.js 4.8.0 Common Javascript', type: 'js', cdn: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.common.min.js'},
     {name: 'Echarts.js 4.8.0 En JavaScript', type: 'js', cdn: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.min.js'},
-    {name: 'GreenSock.js 3.3.4 JavaScript', type: 'js', cdn: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js'}
+    {name: 'GreenSock.js 3.3.4 JavaScript', type: 'js', cdn: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js'},
     
     // CUSTOM JS ADDITIONS SECTION:
     // BELOW THIS POINT, PLACE ANY CUSTOM SCRIPTS THAT SHOULD ADDED TO THE HEAD LAST ....
-
+    {name: 'utilityNav.js', type: 'js', cdn: 'utilityNav.js'}
 
     // -------------------------------*** END OF JS SCRIPTS ***------------------------------------------- //
 ];
