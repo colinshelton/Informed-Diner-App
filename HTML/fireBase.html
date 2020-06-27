@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg",
+            authDomain: "informeddiner.firebaseapp.com",
+            databaseURL: "https://informeddiner.firebaseio.com",
+            projectId: "informeddiner",
+            storageBucket: "informeddiner.appspot.com",
+            messagingSenderId: "498989936909",
+            appId: "1:498989936909:web:f3402179c901930a7e0044"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log(firebase);
+        var database = firebase.database();
+        database.ref('users/' + "testString").set({
+            username: "name",
+            email: "email",
+            profile_picture: "imageUrl"
+        });
+        setTimeout(() => {
+            database.ref('/users/' + "testString").once('value').then(function (snapshot) {
+                var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+                console.log(username);
+            });
+        }, 2000);
+    </script>
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>
+
+// Add the below to JS file...
+// Get a reference to the database service
+
+// ID has to be a unique identifier...
+// venue name and address can be passed into the besttime.api
+// store it by googleplaces id
+// query firebase by googleplaces id
