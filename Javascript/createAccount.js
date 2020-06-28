@@ -11,7 +11,6 @@ function userCreation() {
   // Set both items to local storage with their respective keys. Proof of concept before use of back end server
   localStorage.setItem("Email", emailInput);
   localStorage.setItem("Password", passwordInput);
-  console.log("test");
 }
 
 // Add click event listener to submit button, run userCreation upon click
