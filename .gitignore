@@ -1,0 +1,25 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg",
+    authDomain: "informeddiner.firebaseapp.com",
+    databaseURL: "https://informeddiner.firebaseio.com",
+    projectId: "informeddiner",
+    storageBucket: "informeddiner.appspot.com",
+    messagingSenderId: "498989936909",
+    appId: "1:498989936909:web:f3402179c901930a7e0044"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+// Add the below to JS file...
+// Get a reference to the database service
+  var database = firebase.database();
+// ID has to be a unique identifier...
+// venue name and address can be passed into the besttime.api
+// store it by googleplaces id
+// query firebase by googleplaces id
