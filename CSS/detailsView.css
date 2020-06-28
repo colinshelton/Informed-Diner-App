@@ -1,0 +1,347 @@
+/* CUSTOM CSS CHANGES */
+
+/* CUSTOM STYLES FOR THE SORT/FILTER YOUR RESULTS SLIDE-IN */
+/* ------------------------------------------------------- */
+/* Sets the Sort By radio button color in the sort/filter slide-in */
+[type="radio"]:checked+span:after {
+    background-color: #F44336;
+    border: 2px solid #F44336;
+}
+/* Sets the "Filter By Service" toggle border color in the sort/filter slide-in" */
+[type="radio"]:not(:checked)+span:before {
+    border: 2px solid #444;
+}
+/* Sets background field area for "Filter By Service" toggle switch in the sort/filter slide-in" */
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #ff9a93;
+}
+/* Sets the "Filter By Service" toggle switch color in the sort/filter slide-in" */
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #f44336;
+}
+/* Sets the "Filter By Price Range" slider color in the sort/filter slide-in" */
+input[type=range]::-webkit-slider-thumb {
+    background-color: #F44336;
+}
+/* Sets a high z-index on the filter btn so that it floats over elements as topmost clickable object/button */
+#filterBtnDiv {
+    z-index: 1000;
+}
+
+/* FAB BUTTON / MENU PLACEMENT */
+#fab-parent-container-div {
+    position: absolute; 
+    right: 30px; 
+    top: 8px; 
+    height: 70px; 
+    margin-top: 30px;
+}
+#fab-toggle-parent-div {
+    position: relative; 
+    right: 40px;
+}
+
+
+
+/* AVERAGE RATING / STARS ELEMENT  */
+/* ------------------------------------------------------- */
+/* Class to hide a line break (only show on mobile) */
+.mobileShow {
+    display: none;
+}
+/* Adjusts the font size of the Average Rating title */
+#deskAvgRatingTitle {
+    font-size: 90%;
+}
+
+/* RESTAURANT IMAGE  */
+/* ------------------------------------------------------- */
+/* Sets display parameters for the restaurant image */
+#restImage {
+    width: 100%;
+    object-fit: cover;
+    text-align: center;
+    align-content: space-around;
+}
+
+/* PRICE RANGE  */
+/* ------------------------------------------------------- */
+/* positions the price range absolutely to upper right */
+#priceRangeDiv {
+    /* position: absolute; */
+    /* right: 70px; */
+    /* top: 80px; */
+    position: relative;
+    float: right;
+    right: 7vw;
+}
+
+/* RESTAURANT TITLE  */
+/* ------------------------------------------------------- */
+/* positions the restaurant name and sizes it, sets wrappinging etc. */
+#restNameSpan {
+    font-size: 250% !important;
+    margin-top: 40px !important;
+    padding-top: 40px !important;
+    line-height: 1 !important;
+    text-align: left;
+    word-wrap: normal;
+    font-weight: 700;
+}
+
+/* SAFETY RATING CALLOUT  */
+/* ------------------------------------------------------- */
+/* Sets the font-size of the text in the safety rating etc. */
+#safetyRatingSpan {
+    font-size: 150%;
+}
+
+/* CTA BUTTONS TO FAVORITE THE RESTAURANT/SEE THE MENU/AND GET DIRECTIONS  */
+/* ------------------------------------------------------- */
+/* Sets position and spacing to have the buttons align together in same line on desktop+ */
+#favoritesBtnDiv {
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 15px;
+}
+/* Sets position and spacing to have the buttons align together in same line on desktop+ */
+#seeMenuBtnDiv {
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+/* Sets position and spacing to have the buttons align together in same line on desktop+ */
+#getDirectionsBtnDiv {
+    position: relative;
+    float: left;
+    margin-top: 10px;
+}
+/* Resets hover styling of text and icon in the CTA btns to white color */
+#addFavoriteBtn:visited, #addFavoriteBtn:hover, #addFavoriteBtn:active, #removeFavoriteBtn:visited, #removeFavoriteBtn:hover, #removeFavoriteBtn:active, #seeMenuBtn:visited, #seeMenuBtn:active, #seeMenuBtn:hover, #mapitBtn:visited, #mapitBtn:active, #mapitBtn:hover {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+/* MAPS IMAGE  */
+/* ------------------------------------------------------- */
+/* Sets image width && size */
+#mapsDiv img {
+    width: 25vw;
+}
+
+
+/* ********************************************************************************************* */
+/* ********************************************************************************************* */
+
+
+/* CUSTOM CSS CHANGES FOR RESTAURANT DETAILS PAGE ON MOBILE DEVICES */
+@media screen and (max-width: 450px) {
+    
+    .topHeader {
+        position: sticky !important;
+    }
+
+
+    /* AVERAGE RATING / STARS ELEMENT  */
+    /* ------------------------------------------------------- */
+    /* ON MOBILE: Class to hide a line break in between stars and "Average Rating" and adjust rating title placement */
+    .mobileShow {
+        display: inline;
+        margin-top: 0;
+        padding-top: 0;
+        text-align: left;
+        padding-left: 0;
+        margin-left: 0;
+        font-variant-position: super;
+    }
+    /* ON MOBILE: adjusts font-size and padding for the average rating title*/
+    #deskAvgRatingTitle {
+        font-size: 75%;
+        padding-left: 10px;
+    }
+    /* ON MOBILE: pads the whole stars and avg. rating title div over */
+    #restaurantImageStars {
+        padding-left: 20px !important;
+    }
+
+    /* RESTAURANT IMAGE  */
+    /* ------------------------------------------------------- */
+    /* ON MOBILE: Sets display parameters for the restaurant image */
+    #restImage {
+        width: 100%;
+        margin-top: 10px;
+        margin-left: -4px;
+        padding-left: 0;
+        object-fit: cover;
+        text-align: center;
+        align-content: space-around;
+    }
+
+    /* RESTAURANT TITLE  */
+    /* ------------------------------------------------------- */
+    /* ON MOBILE: positions the restaurant name and sizes it, sets wrappinging etc. */    
+    #restNameSpan {
+        font-size: 125% !important;
+        text-align: left;
+        word-wrap: normal;
+        font-weight: 700;
+    }
+
+    /* PRICE RANGE  */
+    /* ------------------------------------------------------- */
+    /* ON MOBILE: positions the price range absolutely to upper right */
+    #priceRangeDiv {
+        position: absolute;
+        right: 70px;
+        top: 90px;
+    }
+
+    /* RED FAB MENU BUTTON AND ORANGE SUB-MENU BUTTONS  */
+    /* ------------------------------------------------------- */
+    /* ON MOBLE: adjusts the spacing and position of the FAB and the menu buttons */
+    #fab-toggle-parent-div {
+        position: fixed;
+        top: 0;
+        right: 41px !important;
+    }
+    #fab-toggle-menu {
+        position: fixed;
+        float: right;
+        top: 0;
+        right: 0;
+    }
+    #fab-toggle-parent-div > ul > li {
+        margin-right: 5px;
+        padding-right: 0;
+    }
+
+    /* SAFETY RATING CALLOUT  */
+    /* ------------------------------------------------------- */
+    /* ON MOBILE: Sets the max-dimensions and spacing for the safety rating div */
+    #safetyRatingDiv {
+        max-width: 130px;
+        max-height: 140px !important;
+        padding: 0 !important;
+        margin-top: 10px !important;
+        margin-left: 3px !important;
+        margin-bottom: 0;
+    }
+    /* ON MOBILE: Sets the fontsize, alignment and spacing for the safety rating text */
+    #safetyRatingSpan {
+        font-size: 75% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        vertical-align: text-top !important;
+    }
+    /* ON MOBILE: Adjusts the placement of the safety text info that is adjacent to the safety rating callout */
+    #safety-text-column {
+        top: -100px;
+        left: -40px;
+        position: relative;
+        float: right;
+    }
+    /* ON MOBILE: Resizes (down) the font-size of the text "AT THIS TIME" */
+    #at-this-time {
+        font-size: 70% !important; 
+    }
+    /* ON MOBILE: Resizes the font-size of the text "SAFETY RATING" */
+    #safety-rating-text {
+        font-size: 180% !important;
+    }
+    /* ON MOBILE: positions and spaces the % Busy Right Now text */
+    #busy-right-now-callout {
+        position: inline;
+        text-align: left;
+        padding-top: 0;
+        margin-top: 0px;
+        line-height: 1;
+    }
+    /* ON MOBILE: positions and spaces the busiest time text */
+    #busiest-time-callout {
+        position: inline;
+        text-align: left;
+        padding-top: 2px;
+        line-height: 1;
+    }
+    /* ON MOBILE: positions and spaces the safest time text */
+    #safest-time-callout {
+        position: inline;
+        text-align: left;
+        padding-top: 2px;
+        line-height: 1;
+    }
+    
+    /* CTA BUTTONS TO FAVORITE THE RESTAURANT/SEE THE MENU/AND GET DIRECTIONS  */
+    /* ------------------------------------------------------- */
+    /* ON MOBILE: hides the icons for the CTA buttons to save space on mobile */
+    .cta-btn {
+        display: none;
+    }
+    /* ON MOBILE: sets font size, line height, and width for CTA btns */
+    #addFavoriteBtn, #removeFavoriteBtn, #seeMenuBtn, #mapitBtn {
+        font-size: 15px;
+        line-height: 1.2;
+        width: 130px;
+    }
+    /* ON MOBILE: sets padding for the favorites CTA btn */
+    #addFavoriteBtn, #removeFavoriteBtn {
+        padding: 10px;
+    }
+    /* ON MOBILE: sets padding for the menu and directions CTA btns */
+    #seeMenuBtn, #mapitBtn {
+        padding: 17px 10px 10px 10px;
+    }
+    /* ON MOBILE: sets display, width, padding and z-index for the divs of the CTA btns */
+    #favoritesBtnDiv, #seeMenuBtnDiv { 
+        display: flex;
+        text-align: left;
+        width: 130px;
+        padding-left: 5px;
+        padding-right: 5px;
+        z-index: 0;
+    }
+    /* ON MOBILE: sets position and margin for the favorites Btn div */
+    #favoritesBtnDiv {
+        position: inline;
+        margin-top: 0 !important;
+    }
+    /* ON MOBILE: sets position and margin for the menu and directions Btns divs */
+    #seeMenuBtnDiv { 
+        position: relative;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    
+    /* ON MOBILE: sets margin for both the maps image and #getDirectionsBtnDiv */
+    #getDirectionsBtnDiv, #mapsDiv img {
+        margin: 20px;
+    }
+
+    #getDirectionsBtnDiv {
+        display: relative;
+        text-align: center;
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        z-index: 0;
+    }
+
+    /* MAPS IMAGE  */
+    /* ------------------------------------------------------- */
+    /* MOBILE: Sets image width && size */
+    #mapsDiv img {
+        width: 70vw;
+        margin: 20px;
+    }
+}
+
+/* Administrative CSS Classes */
+.clearfix { 
+    content: " ";
+    display: block;
+    clear: both;
+    /* to be placed on elements after floats */
+}
