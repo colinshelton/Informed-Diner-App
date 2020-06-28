@@ -15,3 +15,7 @@ function userCreation() {
 
 // Add click event listener to submit button, run userCreation upon click
 $("#submit").click(userCreation);
+
+if (emailInput !== "" && passwordInput !== "") {
+  submit.addEventListener("click", (href = "../index.html"));
+}
