@@ -5,30 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details View</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">
-<<<<<<< HEAD:HTML/detailsView.html
-        <!-- <link rel="stylesheet" href="/CSS/detailsView.css"> -->
-        <link rel="stylesheet" href="detailsView.css">
-=======
-        <link rel="stylesheet" href="../Informed-Diner-App/CSS/createAccount.css">
-        <link rel="stylesheet" href="../Informed-Diner-App/CSS/detailsView.css">
-        <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
->>>>>>> master:HTML/detailsView.html
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.common.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.min.js"></script>
-<<<<<<< HEAD:HTML/detailsView.html
-        <!-- <script src="/JavaScript/utilityNav.js"></script> -->
-        <script src="utilityNav.js"></script>
-=======
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
-        <script src="../Informed-Diner-App/Javascript/utilityNav.js"></script>
->>>>>>> master:HTML/detailsView.html
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        
+        <link rel="stylesheet" href="../CSS/detailsView.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.common.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.min.js"></script>
+    <script src="../Javascript/utilityNav.js"></script>
 </head>
 <body>
 
@@ -37,38 +25,38 @@
     <header  id="topHeader" class="navbar is-fixed-top grey z-depth-3 mb-5" style="border-bottom: solid 2px #f44336;">
         <div id="logo-container" class="left"> <!-- Logo container -->
             <!-- Logo will go here -->
-            <img src="https://www.chartroomcreative.com/informed-designer/ID-logosmall-red4.png" width="75px" style="padding-left: 15px; margin-top: 15px; margin-bottom: 15px;"  />
-        </div>    <!-- Logo here -->
+            <img src="../assets/ID-logosmall-red4.png" width="75px" style="padding-left: 15px; margin-top: 15px; margin-bottom: 15px;"  />
+        </div>    <!--Logo here-->
         <div id="click-only" class="scrollspy section"> <!-- Main FAB Menu container -->
-            <div id="fab-parent-container-div"> <!-- FAB parent container div-->
+            <div id="fab-parent-container-div"> <!-- FAB parent container div -->
                 <div id="fab-toggle-parent-div" class="fixed-action-btn click-to-toggle direction-left"> <!-- FAB toggle parent div -->
                     <a id="fab-toggle-menu" class="btn-floating btn red"> <!-- Main toggle button a link -->
                         <i id="fab-toggle-i" class="material-icons">menu</i>  <!-- Toggle button: Menu icon on red background -->
-                    </a> 
+                    </a>
                     <ul> <!-- Expanded Menu icon list -->
                         <li> <!-- Expanded Menu: search button - position #5, bottom  -->
                             <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Search button containing link -->
                                 <i class="material-icons">search</i> <!-- Search Button -->
-                            </a>
+                            </a> 
                         </li>
-                        <li> <!-- Expanded Menu: Location button - position #3 -->
+                        <li> <!--Expanded Menu: Location button - position #3-->
                             <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Location button containing link -->
-                                <i class="material-icons">location_on</i> <!-- Location Button-->
+                                <i class="material-icons">location_on</i> <!-- Location Button -->
                             </a>
                         </li>
                         <li> <!-- Expanded Menu: Favorites button - position #2 -->
                             <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Favorites button containing link -->
-                                <i class="material-icons">favorite</i> <!-- Favorites Button-->
+                                <i class="material-icons">favorite</i> <!--Favorites Button -->
                             </a>
                         </li>
-                        <li> <!-- Expanded Menu: Profile button - position #1 -->
-                            <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Profile button containing link --> 
-                                <i class="material-icons">person</i> <!-- Favorites Button-->
+                         <li> <!--Expanded Menu: Profile button - position #1 -->
+                             <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!--Profile button containing link  -->
+                                 <i class="material-icons">person</i> <!--Favorites Button -->
                             </a>
                         </li>
                     </ul> <!-- END: Expanded Menu icon list -->
                 </div> <!-- END: FAB toggle parent div -->
-            </div> <!-- END: FAB parent container div-->
+            </div> <!-- END: FAB parent container div -->
         </div> <!-- END: Main FAB Menu container -->
     </header>
     
@@ -112,89 +100,151 @@
                     <i id="openNowIcon" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
                     <sup><strong>
                         <span id="openNowText">OPEN NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" -->
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span id="priceRange">$$-$$$</span></strong> 
                     </sup></strong>
-                    <!-- **************** PRICE RANGE **************** -->
-                    <div id="priceRangeDiv"> <!-- Price Range container -->
-                        <h4><strong><span id="priceRange">$$-$$$</span></strong></h4>    
-                    </div> <!-- END: Price Range Container -->
                     <!-- **************** RESTAURANT NAME **************** -->
                     <div id="restaurantName"> <!-- Restaurant Name Div-->
-                        <strong><h3><span id="restNameSpan">5-Star Restaurant</span></h3></strong>
+                        <strong><h3><span id="restNameSpan">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong>
                     </div> <!-- END: Restaurant Name Div-->
                 </div> <!-- END: Open Now Div & Span-->
 
-
-                <div class="columns ml-4 mt-4"> <!-- Safety Rating Div Columns-Row -->
-                    <div class="column is-one-half"> <!-- Left-side Safety Value Call-out Parent Container -->
-                        <!-- **************** SAFETY RATING CALL-OUT **************** -->
-                        <div id="safetyRatingDiv" class="uk-tile uk-tile-default orange"> <!-- Safety Value Call-out -->
-                            <p class="is-size-1 has-text-centered"><strong><span id="safetyRatingSpan" class="has-text-white" style="font-size: 150%;">3.1</span></strong></p>
-                        </div> <!-- Safety Value Call-out -->
-                    </div> <!-- END: Left-side Safety Value Call-out Parent Container -->
-                    <div id="safety-text-column" class="column is-one-half"> <!-- Right-side safety rating text -->
+                <div class="columns is-gapless ml-4 mt-4"> <!-- Safety Rating Div Columns-Row -->
+                    <div class="column"> <!-- Left-side Safety Value Call-out Parent Container -->
                         <div id="safetyTextDiv"> <!-- Safety Rating Text Div -->
                             <!-- **************** SAFETY INFO TEXT **************** -->
-                            <h5 id="at-this-time" class="is-size-6 mt-1 mb-0 pb-0"><strong><span class="red-text">AT THIS TIME:</span></strong></h5>
-                            <h4 id="safety-rating-text" class="is-size-1 mt-0 pt-0" style="line-height: 1;">SAFETY<br>RATING</h4>
-                            <!-- **************** % BUSY RIGHT NOW **************** -->
-                            <h5 id="busy-right-now-callout" class="is-size-6 mb-0 pb-1"><strong><span id="percentBusy" class="red-text">31%</span> Busy Right Now</strong></h5>
-                            <!-- **************** BUSIEST TIME **************** -->
-                            <h5 id="busiest-time-callout" class="is-size-6 my-0 py-1"><strong>Busiest Time:&nbsp;<span id="busiestTime" class="red-text">8PM</span></strong></h5>
-                            <!-- **************** SAFEST TIME **************** -->
-                            <h5 id="safest-time-callout" class="is-size-6 my-0 py-1"><strong>Safest Time:&nbsp;<span id="safestTime" class="red-text safestTime">3PM</span></strong></h5>
-                        </div> <!-- END: Safety Rating Text Div -->
-                    </div> <!-- END: Right-side open-now and safety-rating text -->
-                </div> <!-- END: Safety Rating Div Columns-Row -->
-
-
-                <!-- <div id="restCTAsDiv" class="columns is-mobile"> -->
+                            <h5 id="at-this-time" class="is-size-6 mt-6 ml-4 mb-0 pb-0"><strong><span class="red-text">AT THIS TIME:</span></strong></h5>
+                            <h4 id="safety-rating-text" class="is-size-3 ml-4 mt-0 pt-0" style="line-height: 1;">SAFETY RATING</h4>
+                            <div class="columns is-mobile is-gapless">
+                                <div class="column">
+                                    <!-- **************** SAFETY RATING CALL-OUT **************** -->
+                                    <div id="safetyRatingDiv" class="orange py-3"> <!-- Safety Value Call-out -->
+                                        <p class="is-size-1 has-text-centered"><strong><span id="safetyRatingSpan" class="has-text-white" style="font-size: 150%;">3.1</span></strong></p>
+                                    </div> <!-- Safety Value Call-out -->
+                                    
+                                </div>
+                                <div class="column">
+                                    <h5 id="busy-right-now-callout" class="is-size-6 my-2 py-1"><strong><span id="percentBusy" class="white-text red px-1">31%</span> Busy Right Now</strong></h5>
+                                    <!-- **************** BUSIEST TIME **************** -->
+                                    <h5 id="busiest-time-callout" class="is-size-6 my-2 py-1"><strong>Busiest Time:&nbsp;<span id="busiestTime" class="white-text red px-1">8PM</span></strong></h5>
+                                    <!-- **************** SAFEST TIME **************** -->
+                                    <h5 id="safest-time-callout" class="is-size-6 my-2 py-1"><strong>Safest Time:&nbsp;<span id="safestTime" class="white-text green px-1 safestTime">3PM</span></strong></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- END: Left-side Safety Value Call-out Parent Container -->
+                </div>
                 <div id="favoritesBtnDiv" class="">
-                    <a id="addFavoriteBtn" class="waves-effect waves-light btn-large"><i class="cta-btn material-icons left">favorite</i>Add Favorite</a>
-                    <a id="removeFavoriteBtn" class="waves-effect waves-light btn-large is-hidden"><i class="cta-btn material-icons left">favorite_border</i>Remove Favorite</a> 
+                     <!-- **************** ADD FAVORITES BUTTON **************** -->
+                    <a id="addFavoriteBtn" class="waves-effect waves-light button is-large is-fullwidth red text-white"><i class="cta-btn material-icons left ">favorite</i>Add Favorite</a>
+                    <a id="removeFavoriteBtn" class="waves-effect waves-light button is-large is-fullwidth red text-white is-hidden"><i class="cta-btn material-icons left">favorite_border</i>Remove Favorite</a> 
                 </div>
                 <div id="seeMenuBtnDiv" class="">
-                    <a id="seeMenuBtn" class="waves-effect waves-light btn-large"><i class="cta-btn material-icons left">restaurant</i>See Menu</a>
+                     <!-- **************** SEE MENU BUTTON **************** -->
+                    <a id="seeMenuBtn" class="waves-effect waves-light button is-large is-fullwidth red"><i class="cta-btn material-icons left">restaurant</i>See Menu</a>
                 </div>
-                
-                <!-- </div> -->                 
+                <div id="getDirectionsBtnDiv" class="">
+                     <!-- **************** GET DIRECTIONS BUTTON **************** -->
+                    <a id="mapitBtn" class="waves-effect waves-light button is-large is-fullwidth red"><i class="cta-btn material-icons left">directions</i>Get Directions</a>
+                </div>                 
             </div> <!-- END: #openSafetyBusyDiv-->
         </div> <!-- END: top of page columns -->
 
 
         <div class="columns mt-1 pt-1"> <!-- mid-page content columns -->
+             <!-- **************** GOOGLE MAPS **************** -->
             <div id="googleMap" class="column"> <!--- #googleMap DIV -->
                 <!-- Either actual maps image or sample maps image with be adjacent to this contact info, ID = #mapsDiv -->
                 <div id="mapsDiv" class="ml-3">
-                    <img id="mapsImage" src="/assets/sampleMap.png" />
-                </div>
-                <div id="getDirectionsBtnDiv" class="ml-3">
-                    <a id="mapitBtn" class="waves-effect waves-light btn-large"><i class="cta-btn material-icons left">place</i>Map it</a>
+                    <img id="mapsImage" src="../assets/sampleMap.png" />
                 </div>
             </div> <!--- END: #googleMap DIV -->
-            <div id="contactDetailsDiv" class="column"> <!-- #contactDetailsDiv => Contact Details Div -->
-                <!-- Span for Phone Number, ID = #phoneNumber --> <!-- Span for Website, ID = #restWebsite -->
-                <span id="phoneNumber"></span> &nbsp; <span id="restWebsite"></span>
-                <!-- Span for address, ID = #address -->
-                <span id="address"></span>
+
+             <!-- **************** CONTACT DETAILS **************** -->
+            <div id="contactDetailsDiv" class="column mx-2"> <!-- #contactDetailsDiv => Contact Details Div -->
+                <div class="columns">
+                    <div class="column mx-0">
+                        <div class="mx-4 pt-1 "><h3 class="is-size-4-mobile is-size-2-desktop"><strong>Contact:</strong></h3>
+                             <!-- **************** PHONE **************** -->
+                            <div>  
+                                <i class="material-icons is-size-3-desktop is-hidden-mobile">call</i><span class="is-hidden-mobile">&nbsp;</span>
+                                <span id="phoneNumber" class="is-size-5-mobile is-size-3-desktop">333-333-3333</span>
+                            </div>
+                             <!-- **************** WEBSITE **************** -->
+                            <div class="truncate">
+                                <i class="material-icons is-size-3-desktop is-hidden-mobile">language</i><span class="is-hidden-mobile">&nbsp;</span>
+                                <span id="restWebsite" class="is-size-5-mobile is-size-3-desktop"><a href="https://www.example.com">www.example.com</a></span>
+                            </div>
+                             <!-- **************** ADDRESS **************** -->
+                            <div>
+                                <i class="material-icons is-size-3-desktop is-hidden-mobile">place</i><span class="is-hidden-mobile">&nbsp;</span>
+                                <span id="address" class="is-size-5-mobile is-size-3-desktop">123 Eatery Blvd. Raleigh, NC 28608</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- **************** COLLAPSIBLE SCRIPT **************** -->
+                    <script>
+                        $(document).ready(function(){
+                            $('.collapsible').collapsible();
+                        });
+                    </script>
+                    <div class="column">
+                        <div class="mx-4">
+                            <!-- Hours of operation table from the Google api object, ID = #hoursTable -->
+                            <ul class="collapsible">
+                                <li class="active">
+                                    <div class="collapsible-header">
+                                        <h3 class=" mx-0 my-0 is-size-5-mobile is-size-2-desktop"><i class="material-icons">query_builder</i>
+                                            <strong>Hours:</strong></h3>
+                                    </div>
+                                     <!-- **************** BUSINESS HOURS **************** -->
+                                    <div class="collapsible-body">
+                                        <table id="hoursTable" class="table is-narrow is-striped">
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek1" class="">Monday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours1">11AM-9PM</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek2" class="">Tuesday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours2">11AM-9PM</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek3" class="">Wednesday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours3">11AM-9PM</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek4" class="">Thursday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours4">11AM-9PM</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek5" class="">Friday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours5">11AM-9PM</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek6" class="">Saturday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours6">11AM-9PM</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%"><span id="DayOfWeek7" class="">Sunday</span></td>
+                                                <td width="60%" class="has-text-centered"><span id="Hours7">11AM-9PM</span></td>
+                                            </tr>
+                                        </table> <!-- END: Hours Table -->
+                                    </div> <!-- END: Collapsible Hour body -->
+                                </li> <!-- END: Active Collapsible Hours <li> -->
+                            </ul> <!-- END: Collapsible Hours <ul> -->
+                        </div> <!-- END: Hours Internal Div Parent -->
+                    </div> <!-- END: Hours Main Column -->
+                </div> <!-- END: Columns for Contact & Hours -->
             </div> <!-- END: #contactDetailsDiv => Contact Details Div -->
         </div> <!-- END: mid-page content columns -->
-
-        
-
-        
-
-        <!-- Crowdedness Graph with drop down for other days, ID = #graphDiv -->
-        <!-- show safest dining time today in a span with that listed below the graph, ID = #safestTimeGraphSpan (REPEATS THE TIME IN THE SPAN #safestTime/.safestTime) -->
-
-        <!-- Hours of operation table from the Google api object, ID = #hoursTable -->
-
-        <!--- bottom div with a couple sample promos, ID = #promoDiv -->
-
-
-
-
-
-
+         <!-- **************** GRAPH **************** -->
+        <div id="graphDiv">
+            <!-- Crowdedness Graph with drop down for other days, ID = #graphDiv -->
+            <!-- show safest dining time today in a span with that listed below the graph, ID = #safestTimeGraphSpan (REPEATS THE TIME IN THE SPAN #safestTime/.safestTime) -->
+        </div>
+         <!-- **************** PROMOS **************** -->
+        <div id="promosDiv">
+            <!--- bottom div with a couple sample promos, ID = #promoDiv -->
+        </div>
 
     </main>
 
