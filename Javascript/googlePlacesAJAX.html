@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Places JSON</title>
+</head>
+
+<body>
+    <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- <body onload="runQuery(coordinatesAJAX)"> -->
+
+
+    <script>
+        // FIND PLACE FROM TEXT (ZIPCODE):
+
+        function runQuery(coordinatesAJAX) {
+            const queryParams = {
+                "input": "27408",
+                "inputtype": "textquery",
+                "fields": "name,geometry",
+                "key": "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg"
+            };
+            const queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?" + $.param(queryParams);
+            console.log("QueryURL: ", queryURL);
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (placesCoordinates) {
+                console.log(placesCoordinates);
+                console.log("Lat: ", placesCoordinates.candidates[0].geometry.location.lat);
+                console.log("Lng: ", placesCoordinates.candidates[0].geometry.location.lng);
+                // Coordinate Variables 
+                const lat = placesCoordinates.candidates[0].geometry.location.lat;
+                const lng = placesCoordinates.candidates[0].geometry.location.lng;
+                const coordinates = "" + lat + ',' + lng;
+                console.log(coordinates)
+                //return (runQuery())
+                runNearbySearch(coordinates);
+            });
+            //console.log(runQuery());
+            // FIND PLACE NEARBY using lat/lng:
+
+            //Example: 
+            // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
+
+
+        };
+
+        function runNearbySearch(coordinates) {
+            const nearbyParams = {
+                "location": coordinates,
+                "radius": "8046.72",
+                "type": "restaurant",
+                //^add more fields later^
+                "key": "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg"
+            };
+            const nearbyURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" + $.param(nearbyParams);
+            //?parameters: can be name, address, or phone number
+            console.log("NEW NEARBY URL:", nearbyURL);
+
+            // make AJAX request to Google Places API - GETs JSON data at the queryQRL
+            // data then gets passed as an argument
+            $.ajax({
+                url: nearbyURL,
+                method: "GET"
+            }).then(function (placesData) {
+                console.log(placesData);
+            });
+        };
+
+        runQuery();
+        //console.log(runNearbySearch());
+
+    // next step: additional info found with "Place Details" query
+
+    </script>
+</body>
+
+</html>
