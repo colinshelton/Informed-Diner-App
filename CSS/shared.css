@@ -1,0 +1,91 @@
+/* CUSTOM STYLES FOR THE SORT/FILTER YOUR RESULTS SLIDE-IN */
+/* ------------------------------------------------------- */
+/* Sets the Sort By radio button color in the sort/filter slide-in */
+[type="radio"]:checked+span:after {
+    background-color: #F44336;
+    border: 2px solid #F44336;
+}
+/* Sets the "Filter By Service" toggle border color in the sort/filter slide-in" */
+[type="radio"]:not(:checked)+span:before {
+    border: 2px solid #444;
+}
+/* Sets background field area for "Filter By Service" toggle switch in the sort/filter slide-in" */
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #ff9a93;
+}
+/* Sets the "Filter By Service" toggle switch color in the sort/filter slide-in" */
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #f44336;
+}
+/* Sets the "Filter By Price Range" slider color in the sort/filter slide-in" */
+input[type=range]::-webkit-slider-thumb {
+    background-color: #F44336;
+}
+/* Sets a high z-index on the filter btn so that it floats over elements as topmost clickable object/button */
+#filterBtnDiv {
+    z-index: 1000;
+}
+
+/* FAB BUTTON / MENU PLACEMENT */
+#fab-parent-container-div {
+    position: absolute; 
+    right: 41px !important;; 
+    top: 8px; 
+    height: 70px; 
+    margin-top: 30px;
+}
+#fab-toggle-parent-div {
+    position: relative; 
+    right: 41px !important;
+}
+
+/* Administrative CSS Classes */
+.clearfix { 
+    content: " ";
+    display: block;
+    clear: both;
+    /* to be placed on elements after floats */
+}
+
+/* Class to truncate lines */
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+@media screen and (max-width: 450px) {
+    /* RED FAB MENU BUTTON AND ORANGE SUB-MENU BUTTONS  */
+    /* ------------------------------------------------------- */
+    /* ON MOBLE: adjusts the spacing and position of the FAB and the menu buttons */
+    #fab-toggle-parent-div {
+        position: fixed;
+        top: 0;
+        /* right: 41px !important; */
+    }
+    #fab-toggle-menu {
+        position: fixed;
+        float: right;
+        top: 15px;
+        right: 45px;
+    }
+    #fab-toggle-parent-div > ul > li {
+        margin-right: 5px;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+
+    #fab-toggle-parent-div > ul {
+        margin-right: -10px;
+        padding-right: 0;
+        padding-left: 0;
+        margin-left: -10px
+    }
