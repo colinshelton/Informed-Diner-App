@@ -41,21 +41,13 @@
                 //return (runQuery())
                 runNearbySearch(coordinates);
             });
-            //console.log(runQuery());
-            // FIND PLACE NEARBY using lat/lng:
-
-            //Example: 
-            // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
-
-
         };
-
+        // FIND PLACE NEARBY using lat/lng:
         function runNearbySearch(coordinates) {
             const nearbyParams = {
                 "location": coordinates,
                 "radius": "8046.72",
                 "type": "restaurant",
-                //^add more fields later^
                 "key": "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg"
             };
             const nearbyURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" + $.param(nearbyParams);
@@ -69,6 +61,16 @@
                 method: "GET"
             }).then(function (placesData) {
                 console.log(placesData);
+                for (let i = 0; i < placesData.results.length; i++) {
+
+                    const restaurantName = placesData.results[i].name;
+                    const placeID = placesData.results[i].place_id;
+                    const openStatus = placesData.results[i].opening_hours.open_now;
+                    const price_level = placesData.results[i].price_level;
+                    const rating = placesData.results[i].rating;
+                    const address = placesData.results[i].vicinity;
+
+                }
             });
         };
 
