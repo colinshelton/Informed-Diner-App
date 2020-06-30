@@ -1,0 +1,13 @@
+#logo {
+align-items: center;
+}
+
+.notification {
+    background-color: #9E9E9F;
+}
+
+#title {
+    color: #ff9800;
+    text-shadow: 1px 1px 2px gray;
+    text-align: center;
+}

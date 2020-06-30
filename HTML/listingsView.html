@@ -1,242 +1,328 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informed Diner | Results Listing</title>
-    <!-- ************* STYLESHEETS ************* -->
-    <!-- Bulma 0.9.0 (css) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <!-- UIKit 3.5.4 (css) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">
-    <!-- Materialize 3.5.4 (css) -->    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Materialize Icons (css) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Custom Classes for Listings View (css) -->
-    <link rel="stylesheet" href="../CSS/listingsView.css">
-    <!-- Custom Classes & Styles Shared between pages (css) -->
-    <link rel="stylesheet" href="../CSS/shared.css">    
-    <!-- ************* JAVASCRIPT ************* -->
-    <!-- jQuery 3.5.1 (js) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- UIKit 3.5.4 (js) -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> 
-    <!-- Materialize 1.0.0 (js)-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- Utility Navigation Javascript (js) -->
-    <script src="../Javascript/utilityNav.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
-    <script src="eventsQuery.js"></script>
-  </head>
-  <body>
-      
-    <!-- FAB AND UTILITY NAVIGATION -->
-    <!-- ************************** -->
-    <header  id="topHeader" class="navbar is-fixed-top grey z-depth-3 mb-5" style="border-bottom: solid 2px #f44336;">
-      <div id="logo-container" class="left"> <!-- Logo container -->
-          <!-- Logo will go here -->
-          <img src="https://www.chartroomcreative.com/informed-designer/ID-logosmall-red4.png" width="75px" style="padding-left: 15px; margin-top: 15px; margin-bottom: 15px;"  />
-      </div>    <!-- Logo here -->
-      <div id="click-only" class="scrollspy section"> <!-- Main FAB Menu container -->
-          <div id="fab-parent-container-div"> <!-- FAB parent container div-->
-              <div id="fab-toggle-parent-div" class="fixed-action-btn click-to-toggle direction-left"> <!-- FAB toggle parent div -->
-                  <a id="fab-toggle-menu" class="btn-floating btn red"> <!-- Main toggle button a link -->
-                      <i id="fab-toggle-i" class="material-icons">menu</i>  <!-- Toggle button: Menu icon on red background -->
-                  </a> 
-                  <ul> <!-- Expanded Menu icon list -->
-                      <li> <!-- Expanded Menu: search button - position #5, bottom  -->
-                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Search button containing link -->
-                              <i class="material-icons">search</i> <!-- Search Button -->
-                          </a>
-                      </li>
-                      <li> <!-- Expanded Menu: Location button - position #3 -->
-                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Location button containing link -->
-                              <i class="material-icons">location_on</i> <!-- Location Button-->
-                          </a>
-                      </li>
-                      <li> <!-- Expanded Menu: Favorites button - position #2 -->
-                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Favorites button containing link -->
-                              <i class="material-icons">favorite</i> <!-- Favorites Button-->
-                          </a>
-                      </li>
-                      <li> <!-- Expanded Menu: Profile button - position #1 -->
-                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Profile button containing link --> 
-                              <i class="material-icons">person</i> <!-- Favorites Button-->
-                          </a>
-                      </li>
-                  </ul> <!-- END: Expanded Menu icon list -->
-              </div> <!-- END: FAB toggle parent div -->
-          </div> <!-- END: FAB parent container div-->
-      </div> <!-- END: Main FAB Menu container -->
-    </header>
 
-    <!-- MAIN BODY AND UTILITY NAVIGATION -->
-    <!-- ************************** -->
-    <main class="mt-4 pt-6 mx-3"> <!-- Main Content Div -->
-      <section class="section"> <!-- Section for event listing -->
-        <div class="container columns box"> <!-- Container for Event Listing -->
-          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->
-            
-            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
-            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
-            <div id="favorite" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
-              <i class="material-icons white-text small">favorite</i>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informed Diner | Results Listing</title>
+  <!-- ************* STYLESHEETS ************* -->
+  <!-- Bulma 0.9.0 (css) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <!-- UIKit 3.5.4 (css) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">
+  <!-- Materialize 3.5.4 (css) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize Icons (css) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Custom Classes for Listings View (css) -->
+  <!-- <link rel="stylesheet" href="../CSS/listingsView.css"> -->
+  <!-- Custom Classes & Styles Shared between pages (css) -->
+  <link rel="stylesheet" href="../CSS/shared.css">
+  <!-- ************* JAVASCRIPT ************* -->
+  <!-- jQuery 3.5.1 (js) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- UIKit 3.5.4 (js) -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
+  <!-- Materialize 1.0.0 (js)-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Utility Navigation Javascript (js) -->
+  <script src="../Javascript/utilityNav.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+  <script src="../Javascript/eventsQuery.js"></script>
+</head>
+
+<body>
+
+  <!-- FAB AND UTILITY NAVIGATION -->
+  <!-- ************************** -->
+  <header id="topHeader" class="navbar is-fixed-top grey z-depth-3 mb-5" style="border-bottom: solid 2px #f44336;">
+    <div id="logo-container" class="left">
+      <!-- Logo container -->
+      <!-- Logo will go here -->
+      <img src="https://www.chartroomcreative.com/informed-designer/ID-logosmall-red4.png" width="75px"
+        style="padding-left: 15px; margin-top: 15px; margin-bottom: 15px;" />
+    </div> <!-- Logo here -->
+    <div id="click-only" class="scrollspy section">
+      <!-- Main FAB Menu container -->
+      <div id="fab-parent-container-div">
+        <!-- FAB parent container div-->
+        <div id="fab-toggle-parent-div" class="fixed-action-btn click-to-toggle direction-left">
+          <!-- FAB toggle parent div -->
+          <a id="fab-toggle-menu" class="btn-floating btn red">
+            <!-- Main toggle button a link -->
+            <i id="fab-toggle-i" class="material-icons">menu</i> <!-- Toggle button: Menu icon on red background -->
+          </a>
+          <ul>
+            <!-- Expanded Menu icon list -->
+            <li>
+              <!-- Expanded Menu: search button - position #5, bottom  -->
+              <a class="btn-floating btn-small orange"
+                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
+                <!-- Search button containing link -->
+                <i class="material-icons">search</i> <!-- Search Button -->
+              </a>
+            </li>
+            <li>
+              <!-- Expanded Menu: Location button - position #3 -->
+              <a class="btn-floating btn-small orange"
+                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
+                <!-- Location button containing link -->
+                <i class="material-icons">location_on</i> <!-- Location Button-->
+              </a>
+            </li>
+            <li>
+              <!-- Expanded Menu: Favorites button - position #2 -->
+              <a class="btn-floating btn-small orange"
+                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
+                <!-- Favorites button containing link -->
+                <i class="material-icons">favorite</i> <!-- Favorites Button-->
+              </a>
+            </li>
+            <li>
+              <!-- Expanded Menu: Profile button - position #1 -->
+              <a class="btn-floating btn-small orange"
+                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
+                <!-- Profile button containing link -->
+                <i class="material-icons">person</i> <!-- Favorites Button-->
+              </a>
+            </li>
+          </ul> <!-- END: Expanded Menu icon list -->
+        </div> <!-- END: FAB toggle parent div -->
+      </div> <!-- END: FAB parent container div-->
+    </div> <!-- END: Main FAB Menu container -->
+  </header>
+
+  <!-- MAIN BODY AND UTILITY NAVIGATION -->
+  <!-- ************************** -->
+  <main class="mt-4 pt-6 mx-3">
+    <!-- Main Content Div -->
+    <section class="section">
+      <!-- Section for event listing -->
+      <div class="container columns box">
+        <!-- Container for Event Listing -->
+        <div class="column is-one-third is-one-half-mobile">
+          <!-- Restaurant Image (Left Column) -->
+
+          <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+          <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+          <div id="favorite" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+            <i class="material-icons white-text small">favorite</i>
+          </div>
+          <div id="restImageDiv">
+            <!-- Restaurant Image Div #restImageDiv -->
+            <img id="restImage"
+              src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg"
+              width="100%" style="z-index: 0;">
+          </div> <!-- END: Restaurant Image Div -->
+
+          <!-- **************** SAFETY RATING CALL-OUT **************** -->
+          <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+          <div id="safetyRatingDefault" class="display-none"
+            style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;">
+            <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+              <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">
+                Safety Score Pending</div>
             </div>
-            <div id="restImageDiv"> <!-- Restaurant Image Div #restImageDiv -->
-                <img id="restImage" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;">
-            </div> <!-- END: Restaurant Image Div -->
-            
-            <!-- **************** SAFETY RATING CALL-OUT **************** -->
-            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
-            <div id="safetyRatingDefault" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
-              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
-                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
-              </div>
-            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+          </div> <!-- END: Safety Value: DEFAULT Call-out -->
 
-            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
-            <div id="safetyRatingPopulated" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
-              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
-              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
-                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan" class="has-text-white">
-                  3.1
-                </span></strong></p>
-              </div>
-            </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+          <div id="safetyRatingPopulated" class=""
+            style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+            <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety
+                Score:</strong></div>
+            <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+              <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong
+                  class="has-text-white"><span id="safetyRatingSpan" class="has-text-white">
+                    3.1
+                  </span></strong></p>
+            </div>
+          </div> <!-- Safety Value Call-out -->
+          <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to
+            Calculate Current Safety Rating.</div>
+        </div>
+
+        <div class="column is-two-thirds is-one-half-mobile  ">
+          <div class="columns is-mobile is-gapless is-narrow">
+            <!-- ************* STARS RATINGS ************* -->
+            <div id="restaurantImageStars" class="column is-gapless is-narrow">
+              <!-- Ratings Column -->
+              <div id="avgRating" class="ml-1 has-text-left">
+                <!-- Star Ratings Div -->
+                <span id="star1empty" class="is-hidden"><i id="star1emptyIcon"
+                    class="material-icons tiny">star_border</i></span>
+                <span id="star1half" class="is-hidden"><i id="star1halfIcon"
+                    class="material-icons tiny">star_half</i></span>
+                <span id="star1full"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                <span id="star2empty" class="is-hidden"><i id="star2emptyIcon"
+                    class="material-icons tiny">star_border</i></span>
+                <span id="star2half" class="is-hidden"><i id="star2halfIcon"
+                    class="material-icons tiny">star_half</i></span>
+                <span id="star2full"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                <span id="star3empty" class="is-hidden"><i id="star3emptyIcon"
+                    class="material-icons tiny">star_border</i></span>
+                <span id="star3half" class="is-hidden"><i id="star3halfIcon"
+                    class="material-icons tiny">star_half</i></span>
+                <span id="star3full"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                <span id="star4empty" class="is-hidden"><i id="star4emptyIcon"
+                    class="material-icons tiny">star_border</i></span>
+                <span id="star4half" class="is-hidden"><i id="star4halfIcon"
+                    class="material-icons tiny">star_half</i></span>
+                <span id="star4full"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                <span id="star5empty" class="is-hidden"><i id="star5emptyIcon"
+                    class="material-icons tiny">star_border</i></span>
+                <span id="star5half"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                <span id="star5full" class="is-hidden"><i id="star5fullIcon"
+                    class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                <span id="deskAvgRatingTitle"
+                  class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile"
+                  style="line-height: 2;">AVERAGE RATING</span>
+              </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+            </div> <!-- END: Ratings Column -->
+
+            <div class="column is-gapless is-narrow">
+              <!-- OPEN NOW & PRICE RANGE COLUMN -->
+              <div id="openNow" class="has-text-left ml-4 pr-6 is-size-5">
+                <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                <!-- ************* OPEN NOW ************* -->
+                <i id="openNowIcon" class="material-icons">watch_later</i> &nbsp;
+                <!-- clock icon for Open Now Div & Span-->
+                <sup><strong>
+                    <span id="openNowText" class="mb-0 pb-0">OPEN&nbsp;NOW</span>
+                    <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" -->
+                </sup></strong><br>
+                <!-- ************* PRICE RANGE ($$$) ************* -->
+                <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                  <strong>
+                    <span id="priceRange" class="is-size-6">$$-$$$</span>
+                  </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                </div>
+              </div> <!-- END: #openNow Div-->
+            </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+          </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+
+
+          <!-- **************** RESTAURANT NAME **************** -->
+          <div id="restaurantName" class="mt-0 pt-0 mb-0 pb-0">
+            <!-- Restaurant Name, Directions, Website Div-->
+            <strong><span id="restNameSpan"
+                class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold"
+                style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+            <!-- **************** GET DIRECTIONS BUTTON **************** -->
+            <a id="mapitBtn" class="waves-effect waves-light button has-text-black mt-3 mb-1"><i
+                class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- **************** WEBSITE **************** -->
+            <a id="website" class="waves-effect waves-light button has-text-black my-1"
+              href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span
+                id="restWebsite">www.example.com<span></a></span>
+          </div> <!-- END: Restaurant Name, Directions, Website Div-->
+
+        </div> <!-- end of right 2/3 column -->
+
+
+      </div> <!-- END: div.container-->
+    </section> <!-- END: section.section -->
+
+  </main>
+
+  <!-- EVERYTHING BELOW THIS POINT IS RELATED TO THE SORT BY FUNCTIONS -->
+  <!-- *************************************************************** -->
+  <section id="filterPanel" class="mt-6 pt-6">
+    <div id="filterOptions">
+      <!-- Holding div for the filter button && the off-canvas sort functions that slides in on click-->
+      <div id="filterBtnDiv" class="mb-3" style="position: fixed; bottom: 0;">
+        <!-- Holding Div for the Filter toggle button-->
+        <a id="fab-toggle-filter" class="btn-floating btn red ml-3 mb-3" uk-toggle="target: #offcanvas-slide">
+          <!-- Filter toggle button a link -->
+          <i id="fab-toggle-i" class="large material-icons">tune</i>
+          <!-- Toggle button: Filter icon on red background -->
+        </a>
+      </div> <!-- END: Holding Div for Filter toggle button-->
+
+      <!-- THE BELOW IS THE OFF-CANVAS SORT / FILTER OPTIONS THAT SLIDE IN -->
+      <div id="offcanvas-slide" uk-offcanvas="overlay: true">
+        <!-- Containing div for the parent slider -->
+        <div class="uk-offcanvas-bar grey darken-3 mx-0 px-0">
+          <!-- parent div for the off-canvas bar that holds the close button and content -->
+          <button class="uk-offcanvas-close" type="button" uk-close></button>
+          <!--- Closse button for the off-canvas div-->
+          <div class="ml-4 mt-0 pt-0 pb-2">
+            <h3>Sort &amp; Filter Your Results</h3>
           </div>
+          <div class="columns is-full">
+            <!-- Row for the filter columns-->
 
-          <div class="column is-two-thirds is-one-half-mobile  ">
-            <div class="columns is-mobile is-gapless is-narrow">
-              <!-- ************* STARS RATINGS ************* -->
-              <div id="restaurantImageStars" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
-                <div id="avgRating" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
-                  <span id="star1empty" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
-                  <span id="star1half" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
-                  <span id="star1full"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                  <span id="star2empty" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
-                  <span id="star2half" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
-                  <span id="star2full"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                  <span id="star3empty" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
-                  <span id="star3half" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
-                  <span id="star3full"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                  <span id="star4empty" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
-                  <span id="star4half" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
-                  <span id="star4full"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                  <span id="star5empty" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
-                  <span id="star5half"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
-                  <span id="star5full" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
-                  <span id="deskAvgRatingTitle" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
-                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
-              </div> <!-- END: Ratings Column -->
+            <div class="column is-full orange ml-0 mb-2">
+              <!-- 1st Column: Sort-By Radios-->
+              <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i
+                    class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top"
+                    style="line-height: 2;"> SORT BY:</span></strong></h5>
+              <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
+              <div class="control ml-2 align-items-left my-0 py-0">
+                <!-- Radio Control Parent for Sort-By -->
+                <label class="radio column is-full ml-2">
+                  <!-- OPTION #1: Safest for social distancing -->
+                  <input type="radio" name="sortby" checked>
+                  <span class="has-text-black ">Safest for Social Distancing</span>
+                </label>
+                <label class="radio column is-full">
+                  <!-- OPTION #2: Closest to Me -->
+                  <input type="radio" name="sortby">
+                  <span class="has-text-black">Closest to Me</span>
+                </label>
+                <label class="radio column is-full">
+                  <!-- OPTION #3: Highest Rated -->
+                  <input type="radio" name="sortby">
+                  <span class="has-text-black">Highest Rated</span>
+                </label>
+              </div> <!-- END: radio control for sort-by -->
+            </div> <!-- END: 1st Column: Sort-By Radios-->
+          </div> <!-- END: Row for the Sort-By columns -->
 
-              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
-                <div id="openNow" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
-                  <!-- ************* OPEN NOW ************* -->
-                  <i id="openNowIcon" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
-                  <sup><strong>
-                    <span id="openNowText" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
-                  </sup></strong><br>
-                  <!-- ************* PRICE RANGE ($$$) ************* -->
-                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
-                    <strong>
-                      <span id="priceRange" class="is-size-6">$$-$$$</span>
-                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
-                  </div>
-                </div> <!-- END: #openNow Div-->
-              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
-            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
-             
-            
-            <!-- **************** RESTAURANT NAME **************** -->
-            <div id="restaurantName" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
-              <!-- **************** GET DIRECTIONS BUTTON **************** -->
-              <a id="mapitBtn" class="waves-effect waves-light button has-text-black mt-3 mb-1"><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-              <!-- **************** WEBSITE **************** -->    
-              <a id="website" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite">www.example.com<span></a></span>
-            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          <div class="columns is-full">
+            <!-- 2nd Column-Row: Filter by Service Options-->
+            <div class="column is-full orange darken-2 ml-0 mb-2">
+              <!-- 2nd Column: Sort-By Radios-->
+              <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i
+                    class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top"
+                    style="line-height: 2;"> FILTER BY SERVICE OPTIONS:</span></strong></h5>
+              <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
+              <div class="switch ml-0 align-items-left my-0 py-0">
+                <!-- Switch Control Parent for Service Options Filter -->
+                <label class="column is-full ml-1">
+                  <!-- OPTION #1: Safest for social distancing -->
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  <span class="has-text-black" style="font-size: 125%;">Open Now</span>
+                </label>
+              </div> <!-- END: Switch Control Parent for Service Options Filter-->
+            </div> <!-- END: 2nd Column: Filter-By Service Options Toggles -->
+          </div> <!-- END: Row for the Service Options columns -->
 
-          </div> <!-- end of right 2/3 column -->
-              
-
-        </div> <!-- END: div.container-->
-      </section> <!-- END: section.section -->
-
-    </main>
-
-    <!-- EVERYTHING BELOW THIS POINT IS RELATED TO THE SORT BY FUNCTIONS -->
-    <!-- *************************************************************** --> 
-    <section id="filterPanel" class="mt-6 pt-6">
-      <div id="filterOptions"> <!-- Holding div for the filter button && the off-canvas sort functions that slides in on click-->
-          <div id="filterBtnDiv" class="mb-3" style="position: fixed; bottom: 0;"> <!-- Holding Div for the Filter toggle button-->
-              <a id="fab-toggle-filter" class="btn-floating btn red ml-3 mb-3" uk-toggle="target: #offcanvas-slide" > <!-- Filter toggle button a link -->
-                  <i id="fab-toggle-i" class="large material-icons">tune</i>  <!-- Toggle button: Filter icon on red background -->
-              </a> 
-          </div> <!-- END: Holding Div for Filter toggle button-->
-
-          <!-- THE BELOW IS THE OFF-CANVAS SORT / FILTER OPTIONS THAT SLIDE IN -->
-          <div id="offcanvas-slide" uk-offcanvas="overlay: true"> <!-- Containing div for the parent slider -->
-              <div class="uk-offcanvas-bar grey darken-3 mx-0 px-0"> <!-- parent div for the off-canvas bar that holds the close button and content -->
-                  <button class="uk-offcanvas-close" type="button" uk-close></button> <!--- Closse button for the off-canvas div-->
-                  <div class="ml-4 mt-0 pt-0 pb-2">
-                      <h3>Sort &amp; Filter Your Results</h3>
-                  </div>
-                  <div class="columns is-full"> <!-- Row for the filter columns-->
-                      
-                      <div class="column is-full orange ml-0 mb-2"> <!-- 1st Column: Sort-By Radios-->     
-                          <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> SORT BY:</span></strong></h5>
-                          <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
-                          <div class="control ml-2 align-items-left my-0 py-0"> <!-- Radio Control Parent for Sort-By -->
-                              <label class="radio column is-full ml-2"> <!-- OPTION #1: Safest for social distancing -->
-                                  <input type="radio" name="sortby" checked>
-                                  <span class="has-text-black ">Safest for Social Distancing</span>
-                              </label>
-                              <label class="radio column is-full"> <!-- OPTION #2: Closest to Me -->
-                                  <input type="radio" name="sortby">
-                                  <span class="has-text-black">Closest to Me</span>
-                              </label>
-                              <label class="radio column is-full"> <!-- OPTION #3: Highest Rated -->
-                                  <input type="radio" name="sortby">
-                                  <span class="has-text-black">Highest Rated</span>
-                              </label>
-                          </div> <!-- END: radio control for sort-by -->
-                      </div> <!-- END: 1st Column: Sort-By Radios-->
-                  </div> <!-- END: Row for the Sort-By columns -->
-                  
-                  <div class="columns is-full">  <!-- 2nd Column-Row: Filter by Service Options-->
-                      <div class="column is-full orange darken-2 ml-0 mb-2"> <!-- 2nd Column: Sort-By Radios-->
-                          <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> FILTER BY SERVICE OPTIONS:</span></strong></h5>
-                          <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
-                          <div class="switch ml-0 align-items-left my-0 py-0"> <!-- Switch Control Parent for Service Options Filter -->
-                              <label class="column is-full ml-1"> <!-- OPTION #1: Safest for social distancing -->
-                                  <input type="checkbox">
-                                  <span class="lever"></span>
-                                  <span class="has-text-black" style="font-size: 125%;">Open Now</span>
-                              </label>
-                          </div> <!-- END: Switch Control Parent for Service Options Filter-->
-                      </div> <!-- END: 2nd Column: Filter-By Service Options Toggles -->
-                  </div> <!-- END: Row for the Service Options columns -->
-                  
-                  <div class="columns is-full">  <!-- 3rd Column-Row: Filter by Price Options-->
-                      <div class="column is-full orange darken-3 ml-0"> <!-- 3rd Column: Filter by Price-->
-                          <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> FILTER BY PRICE RANGE:</span></strong></h5>
-                          <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
-                          <div class="ml-0 align-items-left my-0 py-0"> <!-- Range Control Parent for Filter-By-Price -->
-                              <div class="uk-margin ml-5 mr-6">
-                                  <h5 class="ml-2 pl-2 has-text-black"><strong>Ranges From:<br> ($)...($$)...($$$)...($$$$)</strong></h5>
-                                  <input class="uk-range" type="range" value="1" min="1" max="4" step="1">                                    
-                              </div> <!-- END: Container for Range Slider -->
-                          </div> <!-- END: Range Control Parent for Filter-By-Price -->
-                      </div> <!-- END: 3rd Column: Filter-by Price-->
-                  </div> <!-- END: Row for the Filter-By-Price  -->
-              </div> <!-- END: Off-canvas grey bar area -->
-          </div>
+          <div class="columns is-full">
+            <!-- 3rd Column-Row: Filter by Price Options-->
+            <div class="column is-full orange darken-3 ml-0">
+              <!-- 3rd Column: Filter by Price-->
+              <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i
+                    class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top"
+                    style="line-height: 2;"> FILTER BY PRICE RANGE:</span></strong></h5>
+              <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
+              <div class="ml-0 align-items-left my-0 py-0">
+                <!-- Range Control Parent for Filter-By-Price -->
+                <div class="uk-margin ml-5 mr-6">
+                  <h5 class="ml-2 pl-2 has-text-black"><strong>Ranges From:<br> ($)...($$)...($$$)...($$$$)</strong>
+                  </h5>
+                  <input class="uk-range" type="range" value="1" min="1" max="4" step="1">
+                </div> <!-- END: Container for Range Slider -->
+              </div> <!-- END: Range Control Parent for Filter-By-Price -->
+            </div> <!-- END: 3rd Column: Filter-by Price-->
+          </div> <!-- END: Row for the Filter-By-Price  -->
+        </div> <!-- END: Off-canvas grey bar area -->
       </div>
-    </section>
+    </div>
+  </section>
 
-  </body>
+</body>
+
 </html>
