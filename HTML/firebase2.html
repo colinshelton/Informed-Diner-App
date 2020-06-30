@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../Javascript/eventsQuery.js"></script>
+</head>
+<body><!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    
+    <body>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script>
+            console.log(restaurants);
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg",
+                authDomain: "informeddiner.firebaseapp.com",
+                databaseURL: "https://informeddiner.firebaseio.com",
+                projectId: "informeddiner",
+                storageBucket: "informeddiner.appspot.com",
+                messagingSenderId: "498989936909",
+                appId: "1:498989936909:web:f3402179c901930a7e0044"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            console.log(firebase);
+            var database = firebase.database();
+            database.ref('rsts/').set({
+                restaurants: $(restaurants).val()   
+            });
+                        
+
+            // setTimeout(() => {
+                // database.ref('/rsts/' + "r").once('value').then(function (snapshot) {
+                //     var restrnts = (snapshot.val() && snapshot.val().uid) || 'Anonymous';
+                //     console.log(restrnts);
+                // });
+            // }, 2000);
+        </script>
+    
+    </body>
+    
+    </html>
+    
