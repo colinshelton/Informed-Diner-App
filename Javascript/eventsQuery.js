@@ -35,13 +35,13 @@ const key = "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg"
 //          openStatus (whether it's currently open), price_level (the price range from inexpensive to very expensive), rating (the
 //          avg. user rating), address (the formatted address for the restaurant - better formatted and more accurate than the original
 //          vicinity field we were keying off of), and a number of lat/lon coordinate values in case we needed them for mapping.
-//      D) it then builds a new currentQuery array called "currentQuery2" with the more complete dataset
-//      E) and then finally appends the "restaurants" final array we'll use for all keying and values. 
+//  D) it then builds a new currentQuery array called "currentQuery2" with the more complete dataset
+//  E) and then finally appends the "restaurants" final array we'll use for all keying and values. 
 
 function runQuery(coordinatesAJAX) {
-    const input = "27408"; 
+    const input = "27408";
     const inputtype = "textquery";
-    const queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="+input +"&inputtype="+inputtype+"&fields=name,geometry&key="+key;
+    const queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + input + "&inputtype=" + inputtype + "&fields=name,geometry&key=" + key;
     const proxy_url = 'https://cors-anywhere.herokuapp.com/';
     const final_url = proxy_url + queryURL;
     $.ajax({
@@ -78,16 +78,18 @@ function runNearbySearch(coordinates) {
         console.log(placesData);
         currentQuery = placesData.results;
         console.log("currentQuery: " + currentQuery);
-        searchPerPlace() 
+        searchPerPlace()
     });
 }
 
-function searchPerPlace (placesSearchData) {
+let itemsProcessed = 0;
+
+function searchPerPlace(placesSearchData) {
     for (let i = 0; i < currentQuery.length; i++) {
         let placeID = currentQuery[i].place_id;
         let photoreference = currentQuery[i].photos[0].photo_reference;
         let photo = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoreference;
-            console.log(photo);
+        console.log(photo);
         const placeSearchURL = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeID + "&key=" + key;
         const proxy_url = 'https://cors-anywhere.herokuapp.com/';
         const final_url3 = proxy_url + placeSearchURL;
@@ -95,6 +97,7 @@ function searchPerPlace (placesSearchData) {
             url: final_url3,
             method: "GET"
         }).then(function (placeSearchFields) {
+            itemsProcessed++;
             console.log(placeSearchFields);
             let phoneNum = placeSearchFields.result.formatted_phone_number;
             console.log(phoneNum);
@@ -129,34 +132,39 @@ function searchPerPlace (placesSearchData) {
             let viewportSWlon = placeSearchFields.result.geometry.viewport.southwest.lon;
             console.log(viewportSWlon);
             currentQuery2[i] = {
-                "uid" : placeID,
-                "phoneNum" : phoneNum,        
-                "website" : website,
-                "mapsURL" : mapsURL,
-                "operatingHours" : operatingHours,
-                "openTime" : openTime,
-                "restaurantName" : restaurantName,
-                "openStatus" : openStatus,
-                "price_level" : price_level,
-                "rating" : rating,
-                "address" : address,
-                "photo" : photo,
-                "locationLat" : locationLat,
-                "locationLon" : locationLon,
-                "viewportNElat" : viewportNElat,
-                "viewportNElon" : viewportNElon,
-                "viewportSWlat" : viewportSWlat,
-                "viewportSWlon" : viewportSWlon,
-                "favorite" : false,
-                "menuURL" : null,
-            }       
+                "uid": placeID,
+                "phoneNum": phoneNum,
+                "website": website,
+                "mapsURL": mapsURL,
+                "operatingHours": operatingHours,
+                "openTime": openTime,
+                "restaurantName": restaurantName,
+                "openStatus": openStatus,
+                "price_level": price_level,
+                "rating": rating,
+                "address": address,
+                "photo": photo,
+                "locationLat": locationLat,
+                "locationLon": locationLon,
+                "viewportNElat": viewportNElat || '',
+                "viewportNElon": viewportNElon || '',
+                "viewportSWlat": viewportSWlat || '',
+                "viewportSWlon": viewportSWlon || '',
+                "favorite": false,
+                "menuURL": '',
+            }
             // set the object to the script-specific array of restaurants  
             restaurants[i] = currentQuery2[i];
             console.log(currentQuery2);
             console.log(restaurants);
+
+            if (itemsProcessed === currentQuery2.length) {
+                console.log('ITEMS PROCESSED', itemsProcessed, currentQuery2.length)
+                saveRestaurants(restaurants)
+            }
         });
     }
-}    
+}
 
 // The function to run the query
 runQuery();
@@ -178,17 +186,20 @@ var firebaseConfig = {
 };
 
 // !!! NOTE: we're continually getting an error that "firebase" is not defined. 
-    
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-console.log(firebase);
+console.log('FIREBASE', firebase);
 var database = firebase.database();
-database.ref('restaurants/' + "r").set({
-    restaurants
-});
-setTimeout(() => {
-    database.ref('/restaurants/' + "r").once('value').then(function (snapshot) {
-        var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
-        console.log(restaurants);
-    });
-}, 2000);
+function saveRestaurants(restaurants) {
+    restaurants.forEach(function (restaurant) {
+        database.ref('restaurants/').push(restaurant);
+    })
+    console.log('RESTAURANTS', restaurants);
+    setTimeout(() => {
+        database.ref('restaurants').once('value').then(function (snapshot) {
+            var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
+            console.log(restaurants);
+        });
+    }, 2000);
+};

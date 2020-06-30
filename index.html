@@ -10,6 +10,7 @@
   <!-- Font Awesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <!-- Local links -->
+  <link rel="stylesheet" href="./CSS/index.css">
   <script src="Javascript/index.js"></script>
   <!-- login with Google -->
   <meta name="google-signin-scope" content="profile email" />
@@ -18,14 +19,14 @@
 </head>
 
 <body>
-  <!-- <img src="assets/logo.png" alt="Informed Diner Logo"> -->
+
   <section class="section">
     <div class="container">
       <div class="container is-fluid">
         <div class="notification">
-          <h2 class="title">
-            Log in to Informed Diner
-          </h2>
+          <img id="logo" src="assets/ID-logosmall-black.png" alt="Informed Diner Logo">
+          <h2 id="title" class="title">
+            Log in to Informed Diner</h2>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
               <input class="input" type="email" placeholder="Email" />
@@ -43,10 +44,10 @@
               </span>
             </p>
           </div>
-          <input id="continueBtn" class="button is-fullwidth is-info is-outlined" type="submit" value="Continue" />
+          <input id="continueBtn" class="button is-fullwidth is-danger" type="submit" value="Continue" />
           <br>
           <a class="nav-link" href="HTML/createAccount.html" style="text-decoration: none;">
-            <input class="button is-fullwidth is-info is-outlined" type="submit" value="Create Account" />
+            <input class="button is-fullwidth is-danger" type="submit" value="Create Account" />
           </a>
 
         </div>
