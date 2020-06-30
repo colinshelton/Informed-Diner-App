@@ -82,6 +82,8 @@ function runNearbySearch(coordinates) {
     });
 }
 
+let itemsProcessed = 0;
+
 function searchPerPlace(placesSearchData) {
     for (let i = 0; i < currentQuery.length; i++) {
         let placeID = currentQuery[i].place_id;
@@ -95,6 +97,7 @@ function searchPerPlace(placesSearchData) {
             url: final_url3,
             method: "GET"
         }).then(function (placeSearchFields) {
+            itemsProcessed++;
             console.log(placeSearchFields);
             let phoneNum = placeSearchFields.result.formatted_phone_number;
             console.log(phoneNum);
@@ -143,17 +146,22 @@ function searchPerPlace(placesSearchData) {
                 "photo": photo,
                 "locationLat": locationLat,
                 "locationLon": locationLon,
-                "viewportNElat": viewportNElat,
-                "viewportNElon": viewportNElon,
-                "viewportSWlat": viewportSWlat,
-                "viewportSWlon": viewportSWlon,
+                "viewportNElat": viewportNElat || '',
+                "viewportNElon": viewportNElon || '',
+                "viewportSWlat": viewportSWlat || '',
+                "viewportSWlon": viewportSWlon || '',
                 "favorite": false,
-                "menuURL": null,
+                "menuURL": '',
             }
             // set the object to the script-specific array of restaurants  
             restaurants[i] = currentQuery2[i];
             console.log(currentQuery2);
             console.log(restaurants);
+
+            if (itemsProcessed === currentQuery2.length) {
+                console.log('ITEMS PROCESSED', itemsProcessed, currentQuery2.length)
+                saveRestaurants(restaurants)
+            }
         });
     }
 }
@@ -181,16 +189,17 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-console.log(firebase);
+console.log('FIREBASE', firebase);
 var database = firebase.database();
-database.ref('restaurants/' + "r").set({
-    restaurants
-
-});
-console.log(restaurants);
-setTimeout(() => {
-    database.ref('/restaurants/' + "r").once('value').then(function (snapshot) {
-        var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
-        console.log(restaurants);
-    });
-}, 2000);
+function saveRestaurants(restaurants) {
+    restaurants.forEach(function (restaurant) {
+        database.ref('restaurants/').push(restaurant);
+    })
+    console.log('RESTAURANTS', restaurants);
+    setTimeout(() => {
+        database.ref('restaurants').once('value').then(function (snapshot) {
+            var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
+            console.log(restaurants);
+        });
+    }, 2000);
+};
