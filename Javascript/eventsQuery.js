@@ -1418,9 +1418,9 @@ firebase.initializeApp(firebaseConfig);
 console.log('FIREBASE', firebase);
 var database = firebase.database();
 
-function saveRestaurants(restaurant) {
+function saveRestaurants(restaurants) {
     // for(i=0; i<700; i++) {
-    database.ref('restaurants/').remove();
+    database.ref('restaurants/').set('restaurants/', null);
 // restaurants.forEach(function (restaurant) {
     // database.ref('/restaurants/').set(null, function(error) {
         // if (error) {
