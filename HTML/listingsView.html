@@ -16,16 +16,19 @@
     <!-- Materialize Icons (css) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Custom Classes for Listings View (css) -->
-    <link rel="stylesheet" href="../CSS/listingsView.css">
+    <!-- <link rel="stylesheet" href="../CSS/listingsView.css"> -->
     <!-- Custom Classes & Styles Shared between pages (css) -->
     <link rel="stylesheet" href="../CSS/shared.css">    
     <!-- ************* JAVASCRIPT ************* -->
     <!-- UIKit 3.5.4 (js) -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> 
+    <script defer src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> 
     <!-- Materialize 1.0.0 (js)-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Utility Navigation Javascript (js) -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    
     
   </head>
   <body>
@@ -72,7 +75,7 @@
 
     <!-- MAIN1: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-1 mt-4 pt-6 mx-3 display-none">
+    <div class="main-1 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -82,7 +85,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv1"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-1" href=""><img id="restImage-1" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-1" href=""><img id="restImage-1" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -100,7 +103,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate1" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -143,7 +146,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName1" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-1" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-1" href="" style="text-decoration: none;"><span id="restNameSpan-1" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-1" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -156,7 +159,7 @@
 
     <!-- MAIN2: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-2 mt-4 pt-6 mx-3 display-none">
+    <div class="main-2 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -166,7 +169,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv2"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-2" href=""><img id="restImage-2" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-2" href=""><img id="restImage-2" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -184,7 +187,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate2" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -227,7 +230,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName2" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-2" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-2" href="" style="text-decoration: none;"><span id="restNameSpan-2" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-2" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -240,7 +243,7 @@
 
     <!-- MAIN3: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-3 mt-4 pt-6 mx-3 display-none">
+    <div class="main-3 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -250,7 +253,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv3"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-3" href=""><img id="restImage-3" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-3" href=""><img id="restImage-3" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -268,7 +271,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate3" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -311,7 +314,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName3" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-3" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-3" href="" style="text-decoration: none;"><span id="restNameSpan-3" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-3" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -324,7 +327,7 @@
 
     <!-- MAIN4: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-4 mt-4 pt-6 mx-3 display-none">
+    <div class="main-4 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -334,7 +337,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv4"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-4" href=""><img id="restImage-4" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-4" href=""><img id="restImage-4" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -352,7 +355,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate4" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -395,7 +398,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName4" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-4" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-4" href="" style="text-decoration: none;"><span id="restNameSpan-4" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-4" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -408,7 +411,7 @@
 
     <!-- MAIN5: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-5 mt-4 pt-6 mx-3 display-none">
+    <div class="main-5 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -418,7 +421,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv5"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-5" href=""><img id="restImage-5" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-5" href=""><img id="restImage-5" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -436,7 +439,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate5" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -479,7 +482,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName5" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-5" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-5" href="" style="text-decoration: none;"><span id="restNameSpan-5" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-5" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -492,7 +495,7 @@
 
     <!-- MAIN6: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-6 mt-4 pt-6 mx-3 display-none">
+    <div class="main-6 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -502,7 +505,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv6"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-6" href=""><img id="restImage-6" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-6" href=""><img id="restImage-6" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -520,7 +523,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate6" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -563,7 +566,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName6" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-6" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-6" href="" style="text-decoration: none;"><span id="restNameSpan-6" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-6" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -576,7 +579,7 @@
 
     <!-- MAIN7: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-7 mt-4 pt-6 mx-3 display-none">
+    <div class="main-7 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -586,7 +589,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv7"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-7" href=""><img id="restImage-7" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-7" href=""><img id="restImage-7" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -604,7 +607,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate7" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -647,7 +650,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName7" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-7" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-7" href="" style="text-decoration: none;"><span id="restNameSpan-7" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-7" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -660,7 +663,7 @@
 
     <!-- MAIN8: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-8 mt-4 pt-6 mx-3 display-none">
+    <div class="main-8 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -670,7 +673,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv8"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-8" href=""><img id="restImage-8" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-8" href=""><img id="restImage-8" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -688,7 +691,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate8" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -731,7 +734,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName8" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-8" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-8" href="" style="text-decoration: none;"><span id="restNameSpan-8" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-8" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -744,7 +747,7 @@
 
     <!-- MAIN9: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-9 mt-4 pt-6 mx-3 display-none">
+    <div class="main-9 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -754,7 +757,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv9"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-9" href=""><img id="restImage-9" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-9" href=""><img id="restImage-9" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -772,7 +775,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate9" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -815,7 +818,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName9" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-9" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-9" href="" style="text-decoration: none;"><span id="restNameSpan-9" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-9" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -828,7 +831,7 @@
 
     <!-- MAIN10: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-10 mt-4 pt-6 mx-3 display-none">
+    <div class="main-10 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -837,7 +840,7 @@
             <div id="favorite-10" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
               <i class="material-icons white-text small">favorite</i>
             </div>
-            <div id="restImageDiv10"> <!-- Restaurant Image Div #restImageDiv -->
+            <div class="card-link" id="restImageDiv10"> <!-- Restaurant Image Div #restImageDiv -->
                 <a id="restIMGa-10" href=""><img id="restImage-10" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
@@ -856,7 +859,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate10" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -899,7 +902,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName10" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-10" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-10" href="" style="text-decoration: none;"><span id="restNameSpan-10" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-10" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -912,7 +915,7 @@
 
     <!-- MAIN11: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-11 mt-4 pt-6 mx-3 display-none">
+    <div class="main-11 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -922,7 +925,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv11"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-11" href=""><img id="restImage-11" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-11" href=""><img id="restImage-11" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -940,7 +943,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate11" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -983,7 +986,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName11" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-11" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-11" href="" style="text-decoration: none;"><span id="restNameSpan-11" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-11" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -996,7 +999,7 @@
 
     <!-- MAIN12: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-12 mt-4 pt-6 mx-3 display-none">
+    <div class="main-12 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1006,7 +1009,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv12"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-12" href=""><img id="restImage-12" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-12" href=""><img id="restImage-12" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1024,7 +1027,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate12" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1067,7 +1070,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName12" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-12" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-12" href="" style="text-decoration: none;"><span id="restNameSpan-12" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-12" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1080,7 +1083,7 @@
 
     <!-- MAIN13: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-13 mt-4 pt-6 mx-3 display-none">
+    <div class="main-13 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1090,7 +1093,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv13"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-13" href=""><img id="restImage-13" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-13" href=""><img id="restImage-13" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1108,7 +1111,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate13" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1151,7 +1154,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName13" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-13" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-13" href="" style="text-decoration: none;"><span id="restNameSpan-13" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-13" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1164,7 +1167,7 @@
 
     <!-- MAIN14: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-14 mt-4 pt-6 mx-3 display-none">
+    <div class="main-14 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1174,7 +1177,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv14"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-14" href=""><img id="restImage-14" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-14" href=""><img id="restImage-14" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1192,7 +1195,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate14" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1235,7 +1238,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName14" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-14" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-14" href="" style="text-decoration: none;"><span id="restNameSpan-14" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-14" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1248,7 +1251,7 @@
 
     <!-- MAIN15: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-15 mt-4 pt-6 mx-3 display-none">
+    <div class="main-15 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1258,7 +1261,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv15"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-15" href=""><img id="restImage-15" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-15" href=""><img id="restImage-15" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1276,7 +1279,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate15" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1319,7 +1322,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName15" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-15" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-15" href="" style="text-decoration: none;"><span id="restNameSpan-15" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-15" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1332,7 +1335,7 @@
 
     <!-- MAIN16: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-16 mt-4 pt-6 mx-3 display-none">
+    <div class="main-16 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1342,7 +1345,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv16"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-16" href=""><img id="restImage-16" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-16" href=""><img id="restImage-16" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1360,7 +1363,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate16" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1403,7 +1406,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName16" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-16" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-16" href="" style="text-decoration: none;"><span id="restNameSpan-16" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-16" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1416,7 +1419,7 @@
 
     <!-- MAIN17: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-17 mt-4 pt-6 mx-3 display-none">
+    <div class="main-17 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1426,7 +1429,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv17"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-17" href=""><img id="restImage-17" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-17" href=""><img id="restImage-17" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1444,7 +1447,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate17" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1487,7 +1490,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName17" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-17" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-17" href="" style="text-decoration: none;"><span id="restNameSpan-17" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-17" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1500,7 +1503,7 @@
 
     <!-- MAIN18: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-18 mt-4 pt-6 mx-3 display-none">
+    <div class="main-18 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1510,7 +1513,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv18"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-18" href=""><img id="restImage-18" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-18" href=""><img id="restImage-18" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1528,7 +1531,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate18" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1571,7 +1574,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName18" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-18" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-18" href="" style="text-decoration: none;"><span id="restNameSpan-18" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-18" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1584,7 +1587,7 @@
 
     <!-- MAIN19: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-19 mt-4 pt-6 mx-3 display-none">
+    <div class="main-19 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1594,7 +1597,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv19"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-19" href=""><img id="restImage-19" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-19" href=""><img id="restImage-19" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1612,7 +1615,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate19" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1655,7 +1658,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName19" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-19" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-19" href="" style="text-decoration: none;"><span id="restNameSpan-19" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-19" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1668,7 +1671,7 @@
 
     <!-- MAIN20: BODY AND UTILITY NAVIGATION -->
     <!-- ************************** -->
-    <div class="main-20 mt-4 pt-6 mx-3 display-none">
+    <div class="main-20 mt-4 pt-6 mx-3 restaurant-card" uid="" btid="">
       <section class="listing section"> <!-- Section for event listing -->
         <div class="container columns box"> <!-- Container for Event Listing -->
           <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
@@ -1678,7 +1681,7 @@
               <i class="material-icons white-text small">favorite</i>
             </div>
             <div id="restImageDiv20"> <!-- Restaurant Image Div #restImageDiv -->
-                <a id="restIMGa-20" href=""><img id="restImage-20" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+                <a class="card-link" id="restIMGa-20" href=""><img id="restImage-20" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
             </div> <!-- END: Restaurant Image Div -->
             <!-- **************** SAFETY RATING CALL-OUT **************** -->
             <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
@@ -1696,7 +1699,7 @@
                 </span></strong></p>
               </div>
             </div> <!-- Safety Value Call-out -->
-            <div id="clickToCalculate20" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+            <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: .5rem; text-align: left;"><strong>SELECT TO CALCULATED CURRENT SAFETY SCORE.</strong></div>
           </div>
           <div class="column is-two-thirds is-one-half-mobile  ">
             <div class="columns is-mobile is-gapless is-narrow">
@@ -1739,7 +1742,7 @@
             </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
             <!-- **************** RESTAURANT NAME **************** -->
             <div id="restaurantName20" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
-              <strong><span id="restNameSpan-20" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <strong><a class="card-link" id="titleLink-20" href="" style="text-decoration: none;"><span id="restNameSpan-20" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></a></h3></strong><br>
               <!-- **************** GET DIRECTIONS BUTTON **************** -->
               <a id="mapitBtn-20" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
               <!-- **************** WEBSITE **************** -->    
@@ -1749,39 +1752,6 @@
         </div> <!-- END: div.container-->
       </section> <!-- END: section.section -->
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <!-- EVERYTHING BELOW THIS POINT IS RELATED TO THE SORT BY FUNCTIONS -->
@@ -1824,7 +1794,7 @@
                   </div> <!-- END: Row for the Sort-By columns -->
                   
                   <div class="columns is-full">  <!-- 2nd Column-Row: Filter by Service Options-->
-                      <div class="column is-full orange darken-2 ml-0 mb-2"> <!-- 2nd Column: Sort-By Radios-->
+                      <div class="column is-full orange ml-0 mb-2"> <!-- 2nd Column: Sort-By Radios-->
                           <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> FILTER BY SERVICE OPTIONS:</span></strong></h5>
                           <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
                           <div class="switch ml-0 align-items-left my-0 py-0"> <!-- Switch Control Parent for Service Options Filter -->
@@ -1838,7 +1808,7 @@
                   </div> <!-- END: Row for the Service Options columns -->
                   
                   <div class="columns is-full">  <!-- 3rd Column-Row: Filter by Price Options-->
-                      <div class="column is-full orange darken-3 ml-0"> <!-- 3rd Column: Filter by Price-->
+                      <div class="column is-full orange ml-0"> <!-- 3rd Column: Filter by Price-->
                           <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> FILTER BY PRICE RANGE:</span></strong></h5>
                           <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
                           <div class="ml-0 align-items-left my-0 py-0"> <!-- Range Control Parent for Filter-By-Price -->
@@ -1854,8 +1824,8 @@
       </div>
     </section>
 
-<script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>    
+<!-- <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script> -->
+<!-- <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>     -->
 <script>
 
 

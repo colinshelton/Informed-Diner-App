@@ -62,6 +62,15 @@ input[type=range]::-webkit-slider-thumb {
     display: block;
 }
 
+
+/* Classes & styles for listings title links */
+#titleLink-1, #restNameSpan-1, #titleLink-2, #restNameSpan-2, #titleLink-3, #restNameSpan-3, #titleLink-4, #restNameSpan-4, #titleLink-5, #restNameSpan-5, #titleLink-6, #restNameSpan-6, #titleLink-7, #restNameSpan-7, #titleLink-8, #restNameSpan-8, #titleLink-9, #restNameSpan-9, #titleLink-10, #restNameSpan-10, #titleLink-11, #restNameSpan-11, #titleLink-12, #restNameSpan-12, #titleLink-13, #restNameSpan-13, #titleLink-14, #restNameSpan-14, #titleLink-15, #restNameSpan-15, #titleLink-16, #restNameSpan-16, #titleLink-17, #restNameSpan-17, #titleLink-18, #restNameSpan-18, #titleLink-19, #restNameSpan-19, #titleLink-20, #restNameSpan-20 {
+    color: #F44336;
+}
+#titleLink-1:hover, #restNameSpan-1:hover, #titleLink-2:hover, #restNameSpan-2:hover, #titleLink-3:hover, #restNameSpan-3:hover, #titleLink-4:hover, #restNameSpan-4:hover, #titleLink-5:hover, #restNameSpan-5:hover, #titleLink-6:hover, #restNameSpan-6:hover, #titleLink-7:hover, #restNameSpan-7:hover, #titleLink-8:hover, #restNameSpan-8:hover, #titleLink-9:hover, #restNameSpan-9:hover, #titleLink-10:hover, #restNameSpan-10:hover, #titleLink-11:hover, #restNameSpan-11:hover, #titleLink-12:hover, #restNameSpan-12:hover, #titleLink-13:hover, #restNameSpan-13:hover, #titleLink-14:hover, #restNameSpan-14:hover, #titleLink-15:hover, #restNameSpan-15:hover, #titleLink-16:hover, #restNameSpan-16:hover, #titleLink-17:hover, #restNameSpan-17:hover, #titleLink-18:hover, #restNameSpan-18:hover, #titleLink-19:hover, #restNameSpan-19:hover, #titleLink-20:hover, #restNameSpan-20:hover {
+    color: #FF9801;
+}
+
 @media screen and (max-width: 450px) {
     /* RED FAB MENU BUTTON AND ORANGE SUB-MENU BUTTONS  */
     /* ------------------------------------------------------- */
