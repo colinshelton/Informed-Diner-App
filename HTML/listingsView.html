@@ -1,327 +1,1898 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informed Diner | Results Listing</title>
+    <!-- jQuery 3.5.1 (js) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- ************* STYLESHEETS ************* -->
+    <!-- Bulma 0.9.0 (css) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <!-- UIKit 3.5.4 (css) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">
+    <!-- Materialize 3.5.4 (css) -->    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Materialize Icons (css) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Custom Classes for Listings View (css) -->
+    <link rel="stylesheet" href="../CSS/listingsView.css">
+    <!-- Custom Classes & Styles Shared between pages (css) -->
+    <link rel="stylesheet" href="../CSS/shared.css">    
+    <!-- ************* JAVASCRIPT ************* -->
+    <!-- UIKit 3.5.4 (js) -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> 
+    <!-- Materialize 1.0.0 (js)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Utility Navigation Javascript (js) -->
+    
+  </head>
+  <body>
+      
+    <!-- FAB AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <header  id="topHeader" class="navbar is-fixed-top grey z-depth-3 mb-5" style="border-bottom: solid 2px #f44336;">
+      <div id="logo-container" class="left"> <!-- Logo container -->
+          <!-- Logo will go here -->
+          <img src="https://www.chartroomcreative.com/informed-designer/ID-logosmall-red4.png" width="75px" style="padding-left: 15px; margin-top: 15px; margin-bottom: 15px;"  />
+      </div>    <!-- Logo here -->
+      <div id="click-only" class="scrollspy section"> <!-- Main FAB Menu container -->
+          <div id="fab-parent-container-div"> <!-- FAB parent container div-->
+              <div id="fab-toggle-parent-div" class="fixed-action-btn click-to-toggle direction-left"> <!-- FAB toggle parent div -->
+                  <a id="fab-toggle-menu" class="btn-floating btn red"> <!-- Main toggle button a link -->
+                      <i id="fab-toggle-i" class="material-icons">menu</i>  <!-- Toggle button: Menu icon on red background -->
+                  </a> 
+                  <ul> <!-- Expanded Menu icon list -->
+                      <li> <!-- Expanded Menu: search button - position #5, bottom  -->
+                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Search button containing link -->
+                              <i class="material-icons">search</i> <!-- Search Button -->
+                          </a>
+                      </li>
+                      <li> <!-- Expanded Menu: Location button - position #3 -->
+                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Location button containing link -->
+                              <i class="material-icons">location_on</i> <!-- Location Button-->
+                          </a>
+                      </li>
+                      <li> <!-- Expanded Menu: Favorites button - position #2 -->
+                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Favorites button containing link -->
+                              <i class="material-icons">favorite</i> <!-- Favorites Button-->
+                          </a>
+                      </li>
+                      <li> <!-- Expanded Menu: Profile button - position #1 -->
+                          <a class="btn-floating btn-small orange" style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);"> <!-- Profile button containing link --> 
+                              <i class="material-icons">person</i> <!-- Favorites Button-->
+                          </a>
+                      </li>
+                  </ul> <!-- END: Expanded Menu icon list -->
+              </div> <!-- END: FAB toggle parent div -->
+          </div> <!-- END: FAB parent container div-->
+      </div> <!-- END: Main FAB Menu container -->
+    </header>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Informed Diner | Results Listing</title>
-  <!-- ************* STYLESHEETS ************* -->
-  <!-- Bulma 0.9.0 (css) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-  <!-- UIKit 3.5.4 (css) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">
-  <!-- Materialize 3.5.4 (css) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- Materialize Icons (css) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <!-- Custom Classes for Listings View (css) -->
-  <!-- <link rel="stylesheet" href="../CSS/listingsView.css"> -->
-  <!-- Custom Classes & Styles Shared between pages (css) -->
-  <link rel="stylesheet" href="../CSS/shared.css">
-  <!-- ************* JAVASCRIPT ************* -->
-  <!-- jQuery 3.5.1 (js) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- UIKit 3.5.4 (js) -->
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-  <!-- Materialize 1.0.0 (js)-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- Utility Navigation Javascript (js) -->
-  <script src="../Javascript/utilityNav.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
-</head>
-
-<body>
-
-  <!-- FAB AND UTILITY NAVIGATION -->
-  <!-- ************************** -->
-  <header id="topHeader" class="navbar is-fixed-top grey z-depth-3 mb-5" style="border-bottom: solid 2px #f44336;">
-    <div id="logo-container" class="left">
-      <!-- Logo container -->
-      <!-- Logo will go here -->
-      <img src="https://www.chartroomcreative.com/informed-designer/ID-logosmall-red4.png" width="75px"
-        style="padding-left: 15px; margin-top: 15px; margin-bottom: 15px;" />
-    </div> <!-- Logo here -->
-    <div id="click-only" class="scrollspy section">
-      <!-- Main FAB Menu container -->
-      <div id="fab-parent-container-div">
-        <!-- FAB parent container div-->
-        <div id="fab-toggle-parent-div" class="fixed-action-btn click-to-toggle direction-left">
-          <!-- FAB toggle parent div -->
-          <a id="fab-toggle-menu" class="btn-floating btn red">
-            <!-- Main toggle button a link -->
-            <i id="fab-toggle-i" class="material-icons">menu</i> <!-- Toggle button: Menu icon on red background -->
-          </a>
-          <ul>
-            <!-- Expanded Menu icon list -->
-            <li>
-              <!-- Expanded Menu: search button - position #5, bottom  -->
-              <a class="btn-floating btn-small orange"
-                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
-                <!-- Search button containing link -->
-                <i class="material-icons">search</i> <!-- Search Button -->
-              </a>
-            </li>
-            <li>
-              <!-- Expanded Menu: Location button - position #3 -->
-              <a class="btn-floating btn-small orange"
-                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
-                <!-- Location button containing link -->
-                <i class="material-icons">location_on</i> <!-- Location Button-->
-              </a>
-            </li>
-            <li>
-              <!-- Expanded Menu: Favorites button - position #2 -->
-              <a class="btn-floating btn-small orange"
-                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
-                <!-- Favorites button containing link -->
-                <i class="material-icons">favorite</i> <!-- Favorites Button-->
-              </a>
-            </li>
-            <li>
-              <!-- Expanded Menu: Profile button - position #1 -->
-              <a class="btn-floating btn-small orange"
-                style="opacity: 0; transform: scale(0.4) translateY(0px) translateX(40px);">
-                <!-- Profile button containing link -->
-                <i class="material-icons">person</i> <!-- Favorites Button-->
-              </a>
-            </li>
-          </ul> <!-- END: Expanded Menu icon list -->
-        </div> <!-- END: FAB toggle parent div -->
-      </div> <!-- END: FAB parent container div-->
-    </div> <!-- END: Main FAB Menu container -->
-  </header>
-
-  <!-- MAIN BODY AND UTILITY NAVIGATION -->
-  <!-- ************************** -->
-  <main class="mt-4 pt-6 mx-3">
-    <!-- Main Content Div -->
-    <section class="section">
-      <!-- Section for event listing -->
-      <div class="container columns box">
-        <!-- Container for Event Listing -->
-        <div class="column is-one-third is-one-half-mobile">
-          <!-- Restaurant Image (Left Column) -->
-
-          <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
-          <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
-          <div id="favorite" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
-            <i class="material-icons white-text small">favorite</i>
-          </div>
-          <div id="restImageDiv">
-            <!-- Restaurant Image Div #restImageDiv -->
-            <img id="restImage"
-              src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg"
-              width="100%" style="z-index: 0;">
-          </div> <!-- END: Restaurant Image Div -->
-
-          <!-- **************** SAFETY RATING CALL-OUT **************** -->
-          <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
-          <div id="safetyRatingDefault" class="display-none"
-            style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;">
-            <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
-              <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">
-                Safety Score Pending</div>
+    <!-- MAIN1: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-1 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-1" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
             </div>
-          </div> <!-- END: Safety Value: DEFAULT Call-out -->
-
-          <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
-          <div id="safetyRatingPopulated" class=""
-            style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
-            <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety
-                Score:</strong></div>
-            <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
-              <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong
-                  class="has-text-white"><span id="safetyRatingSpan" class="has-text-white">
-                    3.1
-                  </span></strong></p>
-            </div>
-          </div> <!-- Safety Value Call-out -->
-          <div id="clickToCalculate" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to
-            Calculate Current Safety Rating.</div>
-        </div>
-
-        <div class="column is-two-thirds is-one-half-mobile  ">
-          <div class="columns is-mobile is-gapless is-narrow">
-            <!-- ************* STARS RATINGS ************* -->
-            <div id="restaurantImageStars" class="column is-gapless is-narrow">
-              <!-- Ratings Column -->
-              <div id="avgRating" class="ml-1 has-text-left">
-                <!-- Star Ratings Div -->
-                <span id="star1empty" class="is-hidden"><i id="star1emptyIcon"
-                    class="material-icons tiny">star_border</i></span>
-                <span id="star1half" class="is-hidden"><i id="star1halfIcon"
-                    class="material-icons tiny">star_half</i></span>
-                <span id="star1full"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                <span id="star2empty" class="is-hidden"><i id="star2emptyIcon"
-                    class="material-icons tiny">star_border</i></span>
-                <span id="star2half" class="is-hidden"><i id="star2halfIcon"
-                    class="material-icons tiny">star_half</i></span>
-                <span id="star2full"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                <span id="star3empty" class="is-hidden"><i id="star3emptyIcon"
-                    class="material-icons tiny">star_border</i></span>
-                <span id="star3half" class="is-hidden"><i id="star3halfIcon"
-                    class="material-icons tiny">star_half</i></span>
-                <span id="star3full"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                <span id="star4empty" class="is-hidden"><i id="star4emptyIcon"
-                    class="material-icons tiny">star_border</i></span>
-                <span id="star4half" class="is-hidden"><i id="star4halfIcon"
-                    class="material-icons tiny">star_half</i></span>
-                <span id="star4full"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
-                <span id="star5empty" class="is-hidden"><i id="star5emptyIcon"
-                    class="material-icons tiny">star_border</i></span>
-                <span id="star5half"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
-                <span id="star5full" class="is-hidden"><i id="star5fullIcon"
-                    class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
-                <span id="deskAvgRatingTitle"
-                  class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile"
-                  style="line-height: 2;">AVERAGE RATING</span>
-              </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
-            </div> <!-- END: Ratings Column -->
-
-            <div class="column is-gapless is-narrow">
-              <!-- OPEN NOW & PRICE RANGE COLUMN -->
-              <div id="openNow" class="has-text-left ml-4 pr-6 is-size-5">
-                <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
-                <!-- ************* OPEN NOW ************* -->
-                <i id="openNowIcon" class="material-icons">watch_later</i> &nbsp;
-                <!-- clock icon for Open Now Div & Span-->
-                <sup><strong>
-                    <span id="openNowText" class="mb-0 pb-0">OPEN&nbsp;NOW</span>
-                    <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" -->
-                </sup></strong><br>
-                <!-- ************* PRICE RANGE ($$$) ************* -->
-                <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
-                  <strong>
-                    <span id="priceRange" class="is-size-6">$$-$$$</span>
-                  </strong> <!-- PRICE RANGE SPAN #priceRange-->
-                </div>
-              </div> <!-- END: #openNow Div-->
-            </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
-          </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
-
-
-          <!-- **************** RESTAURANT NAME **************** -->
-          <div id="restaurantName" class="mt-0 pt-0 mb-0 pb-0">
-            <!-- Restaurant Name, Directions, Website Div-->
-            <strong><span id="restNameSpan"
-                class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold"
-                style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
-            <!-- **************** GET DIRECTIONS BUTTON **************** -->
-            <a id="mapitBtn" class="waves-effect waves-light button has-text-black mt-3 mb-1"><i
-                class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <!-- **************** WEBSITE **************** -->
-            <a id="website" class="waves-effect waves-light button has-text-black my-1"
-              href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span
-                id="restWebsite">www.example.com<span></a></span>
-          </div> <!-- END: Restaurant Name, Directions, Website Div-->
-
-        </div> <!-- end of right 2/3 column -->
-
-
-      </div> <!-- END: div.container-->
-    </section> <!-- END: section.section -->
-
-  </main>
-
-  <!-- EVERYTHING BELOW THIS POINT IS RELATED TO THE SORT BY FUNCTIONS -->
-  <!-- *************************************************************** -->
-  <section id="filterPanel" class="mt-6 pt-6">
-    <div id="filterOptions">
-      <!-- Holding div for the filter button && the off-canvas sort functions that slides in on click-->
-      <div id="filterBtnDiv" class="mb-3" style="position: fixed; bottom: 0;">
-        <!-- Holding Div for the Filter toggle button-->
-        <a id="fab-toggle-filter" class="btn-floating btn red ml-3 mb-3" uk-toggle="target: #offcanvas-slide">
-          <!-- Filter toggle button a link -->
-          <i id="fab-toggle-i" class="large material-icons">tune</i>
-          <!-- Toggle button: Filter icon on red background -->
-        </a>
-      </div> <!-- END: Holding Div for Filter toggle button-->
-
-      <!-- THE BELOW IS THE OFF-CANVAS SORT / FILTER OPTIONS THAT SLIDE IN -->
-      <div id="offcanvas-slide" uk-offcanvas="overlay: true">
-        <!-- Containing div for the parent slider -->
-        <div class="uk-offcanvas-bar grey darken-3 mx-0 px-0">
-          <!-- parent div for the off-canvas bar that holds the close button and content -->
-          <button class="uk-offcanvas-close" type="button" uk-close></button>
-          <!--- Closse button for the off-canvas div-->
-          <div class="ml-4 mt-0 pt-0 pb-2">
-            <h3>Sort &amp; Filter Your Results</h3>
+            <div id="restImageDiv1"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-1" href=""><img id="restImage-1" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-1" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-1" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-1" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate1" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
           </div>
-          <div class="columns is-full">
-            <!-- Row for the filter columns-->
-
-            <div class="column is-full orange ml-0 mb-2">
-              <!-- 1st Column: Sort-By Radios-->
-              <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i
-                    class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top"
-                    style="line-height: 2;"> SORT BY:</span></strong></h5>
-              <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
-              <div class="control ml-2 align-items-left my-0 py-0">
-                <!-- Radio Control Parent for Sort-By -->
-                <label class="radio column is-full ml-2">
-                  <!-- OPTION #1: Safest for social distancing -->
-                  <input type="radio" name="sortby" checked>
-                  <span class="has-text-black ">Safest for Social Distancing</span>
-                </label>
-                <label class="radio column is-full">
-                  <!-- OPTION #2: Closest to Me -->
-                  <input type="radio" name="sortby">
-                  <span class="has-text-black">Closest to Me</span>
-                </label>
-                <label class="radio column is-full">
-                  <!-- OPTION #3: Highest Rated -->
-                  <input type="radio" name="sortby">
-                  <span class="has-text-black">Highest Rated</span>
-                </label>
-              </div> <!-- END: radio control for sort-by -->
-            </div> <!-- END: 1st Column: Sort-By Radios-->
-          </div> <!-- END: Row for the Sort-By columns -->
-
-          <div class="columns is-full">
-            <!-- 2nd Column-Row: Filter by Service Options-->
-            <div class="column is-full orange darken-2 ml-0 mb-2">
-              <!-- 2nd Column: Sort-By Radios-->
-              <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i
-                    class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top"
-                    style="line-height: 2;"> FILTER BY SERVICE OPTIONS:</span></strong></h5>
-              <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
-              <div class="switch ml-0 align-items-left my-0 py-0">
-                <!-- Switch Control Parent for Service Options Filter -->
-                <label class="column is-full ml-1">
-                  <!-- OPTION #1: Safest for social distancing -->
-                  <input type="checkbox">
-                  <span class="lever"></span>
-                  <span class="has-text-black" style="font-size: 125%;">Open Now</span>
-                </label>
-              </div> <!-- END: Switch Control Parent for Service Options Filter-->
-            </div> <!-- END: 2nd Column: Filter-By Service Options Toggles -->
-          </div> <!-- END: Row for the Service Options columns -->
-
-          <div class="columns is-full">
-            <!-- 3rd Column-Row: Filter by Price Options-->
-            <div class="column is-full orange darken-3 ml-0">
-              <!-- 3rd Column: Filter by Price-->
-              <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i
-                    class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top"
-                    style="line-height: 2;"> FILTER BY PRICE RANGE:</span></strong></h5>
-              <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
-              <div class="ml-0 align-items-left my-0 py-0">
-                <!-- Range Control Parent for Filter-By-Price -->
-                <div class="uk-margin ml-5 mr-6">
-                  <h5 class="ml-2 pl-2 has-text-black"><strong>Ranges From:<br> ($)...($$)...($$$)...($$$$)</strong>
-                  </h5>
-                  <input class="uk-range" type="range" value="1" min="1" max="4" step="1">
-                </div> <!-- END: Container for Range Slider -->
-              </div> <!-- END: Range Control Parent for Filter-By-Price -->
-            </div> <!-- END: 3rd Column: Filter-by Price-->
-          </div> <!-- END: Row for the Filter-By-Price  -->
-        </div> <!-- END: Off-canvas grey bar area -->
-      </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-1" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating1" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-1" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-1" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-1"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-1" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-1" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-1"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-1" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-1" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-1"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-1" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-1" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-1"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-1" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-1"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-1" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle1" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow1" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon1" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-1" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-1" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName1" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-1" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-1" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-1" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-1">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
     </div>
-  </section>
-  <script src="../Javascript/eventsQuery.js"></script>
-</body>
 
+    <!-- MAIN2: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-2 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-2" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv2"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-2" href=""><img id="restImage-2" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-2" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-2" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-2" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate2" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-2" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating2" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-2" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-2" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-2"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-2" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-2" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-2"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-2" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-2" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-2"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-2" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-2" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-2"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-2" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-2"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-2" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle2" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow2" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon2" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-2" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-2" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName2" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-2" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-2" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-2" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-2">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN3: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-3 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-3" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv3"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-3" href=""><img id="restImage-3" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-3" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-3" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-3" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate3" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-3" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating3" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-3" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-3" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-3"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-3" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-3" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-3"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-3" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-3" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-3"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-3" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-3" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-3"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-3" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-3"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-3" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle3" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow3" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon3" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-3" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-3" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName3" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-3" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-3" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-3" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-3">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN4: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-4 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-4" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv4"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-4" href=""><img id="restImage-4" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-4" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-4" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-4" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate4" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-4" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating4" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-4" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-4" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-4"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-4" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-4" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-4"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-4" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-4" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-4"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-4" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-4" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-4"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-4" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-4"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-4" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle4" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow4" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon4" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-4" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-4" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName4" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-4" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-4" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-4" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-4">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN5: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-5 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-5" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv5"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-5" href=""><img id="restImage-5" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-5" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-5" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-5" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate5" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-5" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating5" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-5" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-5" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-5"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-5" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-5" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-5"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-5" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-5" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-5"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-5" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-5" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-5"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-5" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-5"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-5" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle5" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow5" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon5" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-5" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-5" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName5" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-5" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-5" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-5" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-5">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN6: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-6 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-6" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv6"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-6" href=""><img id="restImage-6" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-6" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-6" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-6" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate6" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-6" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating6" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-6" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-6" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-6"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-6" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-6" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-6"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-6" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-6" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-6"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-6" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-6" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-6"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-6" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-6"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-6" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle6" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow6" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon6" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-6" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-6" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName6" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-6" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-6" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-6" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-6">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN7: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-7 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-7" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv7"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-7" href=""><img id="restImage-7" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-7" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-7" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-7" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate7" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-7" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating7" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-7" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-7" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-7"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-7" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-7" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-7"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-7" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-7" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-7"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-7" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-7" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-7"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-7" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-7"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-7" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle7" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow7" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon7" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-7" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-7" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName7" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-7" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-7" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-7" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-1">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN8: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-8 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-8" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv8"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-8" href=""><img id="restImage-8" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-8" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-8" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-8" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate8" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-8" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating8" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-8" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-8" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-8"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-8" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-8" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-8"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-8" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-8" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-8"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-8" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-8" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-8"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-8" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-8"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-8" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle8" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow8" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon8" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-8" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-8" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName8" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-8" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-8" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-8" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-8">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN9: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-9 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-9" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv9"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-9" href=""><img id="restImage-9" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-9" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-9" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-9" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate9" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-9" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating9" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-9" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-9" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-9"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-9" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-9" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-9"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-9" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-9" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-9"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-9" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-9" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-9"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-9" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-9"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-9" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle9" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow9" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon9" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-9" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-9" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName9" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-9" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-9" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-9" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-9">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN10: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-10 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-10" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv10"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-10" href=""><img id="restImage-10" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-10" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-10" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-10" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate10" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-10" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating10" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-10" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-10" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-10"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-10" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-10" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-10"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-10" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-10" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-10"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-10" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-10" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-10"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-10" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-10"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-10" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle10" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow10" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon10" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-10" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-10" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName10" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-10" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-10" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-10" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-10">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN11: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-11 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-11" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv11"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-11" href=""><img id="restImage-11" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-11" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-11" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-11" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate11" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-11" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating11" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-11" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-11" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-11"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-11" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-11" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-11"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-11" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-11" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-11"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-11" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-11" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-11"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-11" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-11"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-11" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle11" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow11" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon11" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-11" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-11" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName11" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-11" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-11" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-11" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-11">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN12: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-12 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-12" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv12"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-12" href=""><img id="restImage-12" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-12" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-12" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-12" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate12" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-12" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating12" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-12" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-12" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-12"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-12" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-12" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-12"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-12" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-12" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-12"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-12" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-12" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-12"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-12" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-12"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-12" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle12" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow12" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon12" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-12" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-12" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName12" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-12" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-12" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-12" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-12">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN13: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-13 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-13" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv13"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-13" href=""><img id="restImage-13" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-13" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-13" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-13" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate13" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-13" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating13" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-13" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-13" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-13"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-13" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-13" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-13"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-13" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-13" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-13"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-13" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-13" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-13"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-13" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-13"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-13" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle13" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow13" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon13" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-13" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-13" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName13" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-13" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-13" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-13" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-13">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN14: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-14 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-14" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv14"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-14" href=""><img id="restImage-14" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-14" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-14" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-14" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate14" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-14" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating14" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-14" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-14" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-14"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-14" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-14" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-14"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-14" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-14" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-14"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-14" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-14" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-14"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-14" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-14"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-14" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle14" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow14" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon14" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-14" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-14" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName14" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-14" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-14" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-14" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-14">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN15: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-15 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-15" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv15"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-15" href=""><img id="restImage-15" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-15" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-15" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-15" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate15" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-15" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating15" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-15" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-15" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-15"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-15" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-15" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-15"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-15" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-15" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-15"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-15" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-15" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-15"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-15" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-15"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-15" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle15" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow15" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon15" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-15" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-15" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName15" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-15" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-15" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-15" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-15">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN16: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-16 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-16" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv16"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-16" href=""><img id="restImage-16" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-16" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-16" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-16" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate16" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-16" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating16" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-16" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-16" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-16"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-16" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-16" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-16"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-16" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-16" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-16"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-16" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-16" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-16"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-16" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-16"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-16" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle16" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow16" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon16" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-16" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-16" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName16" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-16" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-16" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-16" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-16">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN17: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-17 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-17" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv17"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-17" href=""><img id="restImage-17" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-17" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-17" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-17" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate17" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-17" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating17" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-17" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-17" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-17"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-17" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-17" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-17"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-17" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-17" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-17"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-17" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-17" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-17"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-17" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-17"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-17" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle17" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow17" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon17" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-17" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-17" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName17" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-17" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-17" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-17" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-17">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN18: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-18 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-18" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv18"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-18" href=""><img id="restImage-18" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-18" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-18" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-18" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate18" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-18" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating18" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-18" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-18" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-18"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-18" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-18" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-18"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-18" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-18" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-18"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-18" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-18" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-18"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-18" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-18"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-18" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle18" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow18" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon18" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-18" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-18" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName18" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-18" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-18" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-18" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-18">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN19: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-19 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-19" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv19"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-19" href=""><img id="restImage-19" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-19" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-19" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-19" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate19" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-19" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating19" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-19" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-19" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-19"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-19" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-19" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-19"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-19" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-19" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-19"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-19" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-19" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-19"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-19" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-19"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-19" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle19" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow19" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon19" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-19" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-19" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName19" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-19" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-19" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-19" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-19">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+    <!-- MAIN20: BODY AND UTILITY NAVIGATION -->
+    <!-- ************************** -->
+    <div class="main-20 mt-4 pt-6 mx-3 display-none">
+      <section class="listing section"> <!-- Section for event listing -->
+        <div class="container columns box"> <!-- Container for Event Listing -->
+          <div class="column is-one-third is-one-half-mobile"> <!-- Restaurant Image (Left Column) -->   
+            <!-- **SHOW IF FAVORITE [Remove class .display-none] -->
+            <!-- **HIDE IF *NOT* FAVORITE [Add class .display-none to #favorite -->
+            <div id="favorite-20" class="ml-0 py-1 px-2 red my-0" style="position: absolute;">
+              <i class="material-icons white-text small">favorite</i>
+            </div>
+            <div id="restImageDiv20"> <!-- Restaurant Image Div #restImageDiv -->
+                <a id="restIMGa-20" href=""><img id="restImage-20" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%" style="z-index: 0;"></a>
+            </div> <!-- END: Restaurant Image Div -->
+            <!-- **************** SAFETY RATING CALL-OUT **************** -->
+            <!-- **SHOW IF SAFETY RATING *IS NOT* CALCULATED [Remove class .display-none and add it to #safetyRatingPopulated] -->
+            <div id="safetyRatingDefault-20" class="display-none" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 50px; text-align: center; right: 10px; float: right;"> 
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <div class="is-size-6 my-3 py-2" class="" style="line-height: 1; color: #fff; font-size: 80% !important;">Safety Score Pending</div>
+              </div>
+            </div> <!-- END: Safety Value: DEFAULT Call-out -->
+            <!-- **SHOW IF SAFETY RATING *IS* CALCULATED IN JSON [Remove class .display-none and add it to #safetyRatingDefault] -->
+            <div id="safetyRatingPopulated-20" class="" style="position: relative; width: 75px !important; height: 70px !important; min-width: 75px !important; min-height: 70px !important; padding: 0px; bottom: 100px; text-align: center; right: 10px; float: right;">
+              <div style="line-height: .9; margin-left: 5% !important;"><strong class="has-text-white">Safety Score:</strong></div>
+              <div class="my-0 py-0 mx-2 px-2 orange" style="float: right;">
+                <p class="is-size-4-mobile is-size-3-desktop has-text-centered my-1 py-1"><strong class="has-text-white"><span id="safetyRatingSpan-20" class="has-text-white">
+                  3.1
+                </span></strong></p>
+              </div>
+            </div> <!-- Safety Value Call-out -->
+            <div id="clickToCalculate20" class="has-text-left mb-0 pb-0" style="font-size: 50%; text-align: left;">Click to Calculate Current Safety Rating.</div>
+          </div>
+          <div class="column is-two-thirds is-one-half-mobile  ">
+            <div class="columns is-mobile is-gapless is-narrow">
+              <!-- ************* STARS RATINGS ************* -->
+              <div id="restaurantImageStars-20" class="column is-gapless is-narrow"> <!-- Ratings Column --> 
+                <div id="avgRating20" class="ml-1 has-text-left"> <!-- Star Ratings Div -->
+                  <span id="star1empty-20" class="is-hidden"><i id="star1emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star1half-20" class="is-hidden"><i id="star1halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star1full-20"><i id="star1fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star2empty-20" class="is-hidden"><i id="star2emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star2half-20" class="is-hidden"><i id="star2halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star2full-20"><i id="star2fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star3empty-20" class="is-hidden"><i id="star3emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star3half-20" class="is-hidden"><i id="star3halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star3full-20"><i id="star3fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star4empty-20" class="is-hidden"><i id="star4emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star4half-20" class="is-hidden"><i id="star4halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star4full-20"><i id="star4fullIcon" class="material-icons tiny">star</i></span>&nbsp;
+                  <span id="star5empty-20" class="is-hidden"><i id="star5emptyIcon" class="material-icons tiny">star_border</i></span>
+                  <span id="star5half-20"><i id="star5halfIcon" class="material-icons tiny">star_half</i></span>
+                  <span id="star5full-20" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
+                  <span id="deskAvgRatingTitle20" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
+                </div> <!-- End: Star Ratings div#avgRating span#star<1,2,3,4,5><empty,half,full> -->
+              </div> <!-- END: Ratings Column -->
+              <div class="column is-gapless is-narrow"> <!-- OPEN NOW & PRICE RANGE COLUMN -->
+                <div id="openNow20" class="has-text-left ml-4 pr-6 is-size-5"> <!-- Open Now Div and Span (to be dynamically updated based on current time and hours or operation -->
+                  <!-- ************* OPEN NOW ************* -->
+                  <i id="openNowIcon20" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
+                  <sup><strong>
+                    <span id="openNowText-20" class="mb-0 pb-0">OPEN&nbsp;NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" --> 
+                  </sup></strong><br>
+                  <!-- ************* PRICE RANGE ($$$) ************* -->
+                  <div class="pt-0 pl-3 ml-6" style="margin-top: -10px;">
+                    <strong>
+                      <span id="priceRange-20" class="is-size-6">$$-$$$</span>
+                    </strong> <!-- PRICE RANGE SPAN #priceRange-->
+                  </div>
+                </div> <!-- END: #openNow Div-->
+              </div> <!-- END: OPEN NOW & PRICE RANGE COLUMN -->
+            </div> <!-- END: Internal Columns for Ratings, Open Now, and price range-->
+            <!-- **************** RESTAURANT NAME **************** -->
+            <div id="restaurantName20" class="mt-0 pt-0 mb-0 pb-0"> <!-- Restaurant Name, Directions, Website Div-->
+              <strong><span id="restNameSpan-20" class="is-size-5 is-size-3-desktop is-size-2-widescreen has-text-weight-bold" style="line-height: 1 !important;">5-Star Restaurant Grill, Pub & Eatery </span></h3></strong><br>
+              <!-- **************** GET DIRECTIONS BUTTON **************** -->
+              <a id="mapitBtn-20" class="waves-effect waves-light button has-text-black mt-3 mb-1" href=""><i class="cta-btn material-icons left">directions</i>Get Directions</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+              <!-- **************** WEBSITE **************** -->    
+              <a id="website-20" class="waves-effect waves-light button has-text-black my-1" href="https://www.example.com"><i class="cta-btn material-icons left">language</i><span id="restWebsite-20">www.example.com<span></a></span>
+            </div> <!-- END: Restaurant Name, Directions, Website Div-->     
+          </div> <!-- end of right 2/3 column -->
+        </div> <!-- END: div.container-->
+      </section> <!-- END: section.section -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- EVERYTHING BELOW THIS POINT IS RELATED TO THE SORT BY FUNCTIONS -->
+    <!-- *************************************************************** --> 
+    <section id="filterPanel" class="mt-6 pt-6">
+      <div id="filterOptions"> <!-- Holding div for the filter button && the off-canvas sort functions that slides in on click-->
+          <div id="filterBtnDiv" class="mb-3" style="position: fixed; bottom: 0;"> <!-- Holding Div for the Filter toggle button-->
+              <a id="fab-toggle-filter" class="btn-floating btn red ml-3 mb-3" uk-toggle="target: #offcanvas-slide" > <!-- Filter toggle button a link -->
+                  <i id="fab-toggle-i" class="large material-icons">tune</i>  <!-- Toggle button: Filter icon on red background -->
+              </a> 
+          </div> <!-- END: Holding Div for Filter toggle button-->
+
+          <!-- THE BELOW IS THE OFF-CANVAS SORT / FILTER OPTIONS THAT SLIDE IN -->
+          <div id="offcanvas-slide" uk-offcanvas="overlay: true"> <!-- Containing div for the parent slider -->
+              <div class="uk-offcanvas-bar grey darken-3 mx-0 px-0"> <!-- parent div for the off-canvas bar that holds the close button and content -->
+                  <button class="uk-offcanvas-close" type="button" uk-close></button> <!--- Closse button for the off-canvas div-->
+                  <div class="ml-4 mt-0 pt-0 pb-2">
+                      <h3>Sort &amp; Filter Your Results</h3>
+                  </div>
+                  <div class="columns is-full"> <!-- Row for the filter columns-->
+                      
+                      <div class="column is-full orange ml-0 mb-2"> <!-- 1st Column: Sort-By Radios-->     
+                          <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> SORT BY:</span></strong></h5>
+                          <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
+                          <div class="control ml-2 align-items-left my-0 py-0"> <!-- Radio Control Parent for Sort-By -->
+                              <label class="radio column is-full ml-2"> <!-- OPTION #1: Safest for social distancing -->
+                                  <input type="radio" name="sortby" checked>
+                                  <span class="has-text-black ">Safest for Social Distancing</span>
+                              </label>
+                              <label class="radio column is-full"> <!-- OPTION #2: Closest to Me -->
+                                  <input type="radio" name="sortby">
+                                  <span class="has-text-black">Closest to Me</span>
+                              </label>
+                              <label class="radio column is-full"> <!-- OPTION #3: Highest Rated -->
+                                  <input type="radio" name="sortby">
+                                  <span class="has-text-black">Highest Rated</span>
+                              </label>
+                          </div> <!-- END: radio control for sort-by -->
+                      </div> <!-- END: 1st Column: Sort-By Radios-->
+                  </div> <!-- END: Row for the Sort-By columns -->
+                  
+                  <div class="columns is-full">  <!-- 2nd Column-Row: Filter by Service Options-->
+                      <div class="column is-full orange darken-2 ml-0 mb-2"> <!-- 2nd Column: Sort-By Radios-->
+                          <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> FILTER BY SERVICE OPTIONS:</span></strong></h5>
+                          <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
+                          <div class="switch ml-0 align-items-left my-0 py-0"> <!-- Switch Control Parent for Service Options Filter -->
+                              <label class="column is-full ml-1"> <!-- OPTION #1: Safest for social distancing -->
+                                  <input type="checkbox">
+                                  <span class="lever"></span>
+                                  <span class="has-text-black" style="font-size: 125%;">Open Now</span>
+                              </label>
+                          </div> <!-- END: Switch Control Parent for Service Options Filter-->
+                      </div> <!-- END: 2nd Column: Filter-By Service Options Toggles -->
+                  </div> <!-- END: Row for the Service Options columns -->
+                  
+                  <div class="columns is-full">  <!-- 3rd Column-Row: Filter by Price Options-->
+                      <div class="column is-full orange darken-3 ml-0"> <!-- 3rd Column: Filter by Price-->
+                          <h5 class="has-text-black ml-5 mt-2 mb-0 pb-0"><strong> <i class="material-icons mb-0 mt-1 pb-0">swap_vert</i><span class="uk-text-top" style="line-height: 2;"> FILTER BY PRICE RANGE:</span></strong></h5>
+                          <hr class="ml-5 mt-1 mb-1 py-0" width="80%" style="text-align: center; background-color: #000;">
+                          <div class="ml-0 align-items-left my-0 py-0"> <!-- Range Control Parent for Filter-By-Price -->
+                              <div class="uk-margin ml-5 mr-6">
+                                  <h5 class="ml-2 pl-2 has-text-black"><strong>Ranges From:<br> ($)...($$)...($$$)...($$$$)</strong></h5>
+                                  <input class="uk-range" type="range" value="1" min="1" max="4" step="1">                                    
+                              </div> <!-- END: Container for Range Slider -->
+                          </div> <!-- END: Range Control Parent for Filter-By-Price -->
+                      </div> <!-- END: 3rd Column: Filter-by Price-->
+                  </div> <!-- END: Row for the Filter-By-Price  -->
+              </div> <!-- END: Off-canvas grey bar area -->
+          </div>
+      </div>
+    </section>
+
+<script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>    
+<script>
+
+
+// ************** FIREBASE SCRIPT ************** //
+// The core Firebase JS SDK script src's that are always required and must be listed first
+// have been set in the HTML file for event listings.
+
+// var firebaseConfig = {
+//     apiKey: key,
+//     authDomain: "informeddiner.firebaseapp.com",
+//     databaseURL: "https://informeddiner.firebaseio.com",
+//     projectId: "informeddiner",
+//     storageBucket: "informeddiner.appspot.com",
+//     messagingSenderId: "498989936909",
+//     appId: "1:498989936909:web:f3402179c901930a7e0044"
+// };
+
+// !!! NOTE: we're continually getting an error that "firebase" is not defined. 
+
+
+// Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// console.log(firebase);
+// var database = firebase.database().ref('restaurants/' + "r");
+// // database.ref('restaurants/' + "r")
+// database.set({
+//     restaurants
+// });
+// setTimeout(() => {
+//     database.ref('/restaurants/' + "r").once('value').then(function (snapshot) {
+//         var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
+//         console.log(restaurants);
+//     });
+// }, 2000);
+    </script>
+
+    <script src="../Javascript/utilityNav.js"></script>
+    <script src="../Javascript/eventsQuery.js"></script>
+  </body>
 </html>
