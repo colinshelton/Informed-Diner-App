@@ -1180,13 +1180,14 @@ function searchPerPlace(placesSearchData) {
 
 // ! RUN THE QUERY AND AJAX CALLS
 runQuery();
- 
+ let b=0;
 // ************** CREATE LISTINGS ************** //
 function createListings () {
     // for (let i=0; i < currentQuery2.length; i++) {
     for (let i=0; i < restaurants.length; i++) {
+        b++;
         // unhide appropriate div
-        let thisDiv = ".main-" + (i+1);
+        let thisDiv = ".main-" + (b);
         console.log(thisDiv);
         if($(thisDiv).hasClass("display-none")) {
             $(thisDiv).removeClass("display-none");
@@ -1195,11 +1196,30 @@ function createListings () {
         }
         // update the uid and btid parameters per main div
         $(thisDiv).attr("uid", restaurants[i].uid);
-        $(thisDiv).attr("btid", restaurants[i].btid);
+        // $(thisDiv).attr("btid", restaurants[i].btid);
         
-        $(".card-link").attr("uid", restaurants[i].uid);
-        $(".card-link").attr("btid", restaurants[i].btid);
+        if ($(thisDiv).attr("btid") == undefined) {
+            restaurants[i].btid = "";
+            $(thisDiv).attr("btid", restaurants[i].btid);
+        } else {
+            $(thisDiv).attr("btid", restaurants[i].btid);
+        }
         
+        let crdlnk = ".card-link";
+        let crdlsp = ".card-link span";
+
+        $(crdlnk).attr("uid", restaurants[i].uid);
+        $(crdlsp).attr("uid", restaurants[i].uid);
+        // $(".card-link").attr("btid", restaurants[i].btid);
+        // $(".card-link span").attr("btid", restaurants[i].btid);
+
+
+        if ($(crdlsp).attr("btid") == undefined) {
+            restaurants[i].btid = "";
+            $(crdlsp).attr("btid", restaurants[i].btid);
+        } else {
+            $(crdlsp).attr("btid", restaurants[i].btid);
+        }
 
         // show / hide favorites icon on listing
         let thisFav = "#favorite-" + (i+1);
@@ -1216,7 +1236,16 @@ function createListings () {
         $(thisImgSRC).attr("src", restaurants[(i+1)].photo);
         // update the uid and btid parameters per img
         $(thisImgSRC).attr("uid", restaurants[i].uid);
-        $(thisImgSRC).attr("btid", restaurants[i].btid);
+        $(thisImgURL).attr("uid", restaurants[i].uid);
+        
+        if ($(thisImgSRC).attr("btid") == undefined) {
+            restaurants[i].btid = "";
+            $(thisImgSRC).attr("btid", restaurants[i].btid);
+        } else {
+            $(thisImgSRC).attr("btid", restaurants[i].btid);
+            $(crdlsp).attr("btid", restaurants[i].btid);
+        }
+        
 
         // update Safety rating
         let thisSafetyDef = "#safetyRatingDefault-" + (i+1);
@@ -1481,9 +1510,11 @@ let cardID = "";
 console.log("BestTimeApp.io URL: " + btURL);
 
 //Listen for click on the card click.
-$(".card-link").click(function () {
+$(".restaurant-card").click(function () {
     let cardUID = $(this).attr("uid");
+    localStorage.setItem("cardUID",cardUID);
     let cardBTID = $(this).attr("btid");
+    localStorage.setItem("cardBTID",cardBTID);
     console.log("cardUID: " + cardUID);
     // ************** FIND THE MATCHING RESTAURANT OBJECT:  ************** //
     restaurants.forEach(function(r) {
@@ -1498,6 +1529,7 @@ $(".card-link").click(function () {
             console.log("cardID: " + cardID);
             console.log("currentRestaurant Object: " + currentRestaurant);  
             localStorage.setItem("lsRestaurants", JSON.stringify(restaurants));
+            localStorage.setItem("currentRestaurant", JSON.stringify(currentRestaurant))
             localStorage.setItem("currentRestaurant", JSON.stringify(currentRestaurant));
         } 
     });
@@ -1923,16 +1955,24 @@ $(".card-link").click(function () {
             restaurants[currRestIndex].btSun6.hours_analysis.hour23_5AM_intensity_text = response.analysis[6].hour_analysis[23].intensity_txt;
             restaurants[currRestIndex].btSun6.hours_analysis.hour23_5AM_intensity_val = response.analysis[6].hour_analysis[23].intensity_nr;
             currentRestaurant = restaurants[currRestIndex];
-            localStorage.setItem("currentRestaurant", JSON.stringify(currentRestaurant));      
+            localStorage.setItem("currentRestaurant", JSON.stringify(currentRestaurant));  
+            localStorage.setItem("restaurants-after-updating-bt", JSON.stringify(restaurants));    
                    
         });
         console.log(currBTforecast);
         localStorage.setItem("lsRestaurants", JSON.stringify(restaurants));
     } else { 
         console.log("Already been forecasted"); 
-        currBTforecast = localStorage.getItem(JSON.parse("currBTforecast"));
-    }
+        currBTforecast = JSON.parse(localStorage.getItem("currBTforecast"));
+    };
     // window.location = "../HTML/detailsView.html";
+    let buildVrsn = JSON.parse(localStorage.getItem("user"));
+    let i=0;
+    let rb = 0;
+    // while(currentRestaurant !== JSON.parse(localStorage.getItem("currentRestaurant"))) {
+        // console.log("not updated");
+        // i++;
+    // }
     window.open("../HTML/detailsView.html", "_blank");
     localStorage.setItem("lsRestaurants", JSON.stringify(restaurants));
 });
@@ -1953,22 +1993,23 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-    console.log('FIREBASE', firebase);
-    var database = firebase.database();
+console.log('FIREBASE', firebase);
+var database = firebase.database();
+
 saveRestaurants();
-    
-            // restaurants.forEach(function (restaurant) {
-            r = 2;
-            database.ref('restaurants/').set("restaurants");
-            // })
-            console.log('RESTAURANTS', restaurants);
-            setTimeout(() => {
-                database.ref('restaurants').once('value').then(function (snapshot) {
-                    var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
-                    console.log(restaurants);
-                });
-            }, 2000);
-        }
+
+    // restaurants.forEach(function (restaurant) {
+    r = 2;
+    database.ref('restaurants/').set("restaurants");
+    // })
+    console.log('RESTAURANTS', restaurants);
+    setTimeout(() => {
+        database.ref('restaurants').once('value').then(function (snapshot) {
+            var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
+            console.log(restaurants);
+        });
+    }, 2000);
+}
     // database.ref('/restaurants/').set(null, function(error) {
         // if (error) {
             // console.log("FB write failed");// The write failed...

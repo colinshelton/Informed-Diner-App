@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+$( document ).ready(function() {
+
 let currBTforecast = JSON.parse(localStorage.getItem("currBTforecast"));
 let restaurants = JSON.parse(localStorage.getItem("lsRestaurants"));
 let currRest = JSON.parse(localStorage.getItem("currentRestaurant"));
@@ -240,12 +241,14 @@ const proxy_url = 'https://cors-anywhere.herokuapp.com/';
         $("#removeFavoriteBtn").toggleClass("is-hidden");
         currRest.favorite = true;
         $(thisFav).removeClass("display-none");
+        $("#favdiv").removeClass("display-none");
     });
     $("#removeFavoriteBtn").click(function() {
         $("#addFavoriteBtn").toggleClass("is-hidden");
         $("#removeFavoriteBtn").toggleClass("is-hidden");
         currRest.favorite = false;
         $(thisFav).addClass("display-none");
+        $("#favdiv").addClass("display-none");
     });
 
 // 6. Link Get Directions Button to mapsURL
@@ -264,46 +267,48 @@ const proxy_url = 'https://cors-anywhere.herokuapp.com/';
 
 // 9. Update Hours
 const ot0 = currRest.openTime[0]; 
-const hours1From = (currRest.openTime[0]).slice(9,8);
-const hours1To = (currRest.openTime[0]).slice(0,-8);
+// const hours1From = (currRest.openTime[0]).slice(10,8);
+// console.log(hours1From);
+const hours1To = (currRest.openTime[0]).slice(8);
+console.log(hours1To);
 $("#DayOfWeek1").text(ot0.slice(0,7));
-$("#Hours1").val(hours1From + '&mdash;' + hours1To);
+$("#Hours1").text(hours1To);
 
 const ot1 = currRest.openTime[1];
-const hours2From = (currRest.openTime[1]).slice(10,8);
-const hours2To = (currRest.openTime[1]).slice(0,-8);
+// const hours2From = (currRest.openTime[1]).slice(10,8);
+const hours2To = (currRest.openTime[1]).slice(9);
 $("#DayOfWeek2").text(ot1.slice(0,8));
-$("#Hours2").val(hours2From + '&mdash;' + hours2To);
+$("#Hours2").text(hours2To);
 
 const ot2 = currRest.openTime[2];
-const hours3From = (currRest.openTime[2]).slice(12,8);
-const hours3To = (currRest.openTime[2]).slice(0,-8)
+// const hours3From = (currRest.openTime[2]).slice(12,8);
+const hours3To = (currRest.openTime[2]).slice(11)
 $("#DayOfWeek3").text(ot2.slice(0,10));
-$("#Hours3").val(hours3From + '&mdash;' + hours3To);
+$("#Hours3").text(hours3To);
 
 const ot3 = currRest.openTime[3];
-const hours4From = (currRest.openTime[3]).slice(11,8);
-const hours4To = (currRest.openTime[3]).slice(0,-8);
+// const hours4From = (currRest.openTime[3]).slice(11,8);
+const hours4To = (currRest.openTime[3]).slice(10);
 $("#DayOfWeek4").text(ot3.slice(0,9));
-$("#Hours4").val(hours4From + '&mdash;' + hours4To);
+$("#Hours4").text(hours4To);
 
 const ot4 = currRest.openTime[4];
-const hours5From = (currRest.openTime[4]).slice(9,8);
-const hours5To = (currRest.openTime[4]).slice(0,-8);
+// const hours5From = (currRest.openTime[4]).slice(9,8);
+const hours5To = (currRest.openTime[4]).slice(8);
 $("#DayOfWeek5").text(ot4.slice(0,7));
-$("#Hours5").val(hours5From + '&mdash;' + hours5To);
+$("#Hours5").text(hours5To);
 
 const ot5 = currRest.openTime[5];
-const hours6From = (currRest.openTime[5]).slice(11,8);
-const hours6To = (currRest.openTime[5]).slice(0,-8);
+// const hours6From = (currRest.openTime[5]).slice(11,8);
+const hours6To = (currRest.openTime[5]).slice(10);
 $("#DayOfWeek6").text(ot5.slice(0,9));
-$("#Hours6").val(hours6From + '&mdash;' + hours6To);
+$("#Hours6").text(hours6To);
 
 const ot6 = currRest.openTime[6];
-const hours7From = (currRest.openTime[6]).slice(9,8);
-const hours7To = (currRest.openTime[6]).slice(0,-8);
+// const hours7From = (currRest.openTime[6]).slice(9,8);
+const hours7To = (currRest.openTime[6]).slice(8);
 $("#DayOfWeek7").text(ot6.slice(0,7));
-$("#Hours7").val(hours7From + '&mdash;' + hours7To);
+$("#Hours7").text(hours7To);
 
 // 10.  Update Contact Address
 const thisAdd = currRest.address.slice(0,-5)
@@ -369,11 +374,11 @@ let quietestTimeTodayConverted = (quietestTimeToday % 12);
 if (quietestTimeToday > 12) {
     quietestTimeToday = (quietestTimeTodayConverted.toString() + " PM");
     console.log("busy time" + quietestTimeToday);
-} else if (meanQ == 12) {
+} else if (quietestTimeToday == 12) {
     quietestTimeToday = toString(quietestTimeTodayConverted.toString() + " PM");
 } else { 
     quietestTimeToday = toString(quietestTimeTodayConverted.toString() + " AM");
-    console.log("busy time is AM :" + quietestTimeToday);
+    console.log("quiet is AM :" + quietestTimeToday);
 }
 $(".safestTime").text(quietestTimeToday);
 
@@ -510,23 +515,5 @@ $("#safetyRatingSpan").text(weightedSS);
 
 // 19. Firebase
 // ! Firebase has been cleared and reactivated and is logging our data.
-        
-=======
-const proxy_url = "https://cors-anywhere.herokuapp.com/";
-let BTurl = "https://besttime.app/api/v1/forecasts/weekoverview";
-const final_url = proxy_url + BTurl;
 
-let settings = {
-  url: final_url,
-  data: {
-    api_key_private: "pri_92300646b81c4c1faeb17dfe06390a91",
-    venue_name: "P.F. Chang's",
-    venue_address: "3338 W Friendly Ave, Greensboro, NC 27410, USA",
-  },
-  method: "GET",
-};
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
 });
->>>>>>> master
