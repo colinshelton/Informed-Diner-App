@@ -6,7 +6,11 @@ let currentQuery = []; // This is the first populated current query array that h
 let currentQuery2 = []; // This is the 2nd, more defined current query array that contains all available data from currentQuery as well as specific values we couldn't get without a specific search per result.
 
 // Google Key
-const key = "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg"
+const key = "AIzaSyD9zrHku8yPl0RU8P1IVNyfAq5YYfqj4Eg";
+// BestTime.app Keys
+const priKey = "pri_39b255dc8cce4593bdf450afd28225ec";
+const pubKey = "pub_384cb93c28cd434c842824f3e97299db";
+
 // const proxy_url = "https://cors-proxy.htmldriven.com/?url="
 const proxy_url = 'https://cors-anywhere.herokuapp.com/';
 
@@ -98,7 +102,6 @@ function searchPerPlace(placesSearchData) {
             } else {
                 website = placeSearchFields.result.website;
             }
-            
             // console.log(mapsURL); 
             let mapsURL = "";
             if(placeSearchFields.result.url == undefined) {
@@ -107,35 +110,112 @@ function searchPerPlace(placesSearchData) {
                 mapsURL = placeSearchFields.result.url;
             }
             // console.log(operatingHours);
-            let operatingHours = placeSearchFields.result.opening_hours.periods;
-            let openTime = placeSearchFields.result.opening_hours.weekday_text; // console.log(openTime);
-            let restaurantName = placeSearchFields.result.name; // console.log(restaurantName);
-            let openStatus = placeSearchFields.result.opening_hours.open_now; // console.log(openStatus);
-            let price_level = placeSearchFields.result.price_level; // console.log(price_level);
-            let rating = placeSearchFields.result.rating; // console.log(rating);
-            let address = placeSearchFields.result.formatted_address; // console.log(address);
-            let locationLat = placeSearchFields.result.geometry.location.lat; // console.log(locationLat);
-            let locationLon = placeSearchFields.result.geometry.location.lng; // console.log(locationLon);
-            let viewportNElat = placeSearchFields.result.geometry.viewport.northeast.lat; // console.log(viewportNElat);
-            let viewportNElon = placeSearchFields.result.geometry.viewport.northeast.lng; // console.log(viewportNElon);
-            let viewportSWlat = placeSearchFields.result.geometry.viewport.southwest.lat; // console.log(viewportSWlat);
-            let viewportSWlon = placeSearchFields.result.geometry.viewport.southwest.lon; // console.log(viewportSWlon);
+            let operatingHours = "";
+            if(placeSearchFields.result.opening_hours.periods == undefined) {
+                operatingHours = "";
+            } else {
+                operatingHours = placeSearchFields.result.opening_hours.periods;
+            }
+            // console.log(openTime);
+            let openTime = ""; 
+            if(placeSearchFields.result.opening_hours.weekday_text == undefined) {
+                openTime = "";
+            } else {
+                openTime = placeSearchFields.result.opening_hours.weekday_text;
+            }
+            // console.log(restaurantName);
+            let restaurantName = "";
+            if(placeSearchFields.result.name == undefined) {
+                restaurantName = "";
+            } else {
+                restaurantName = placeSearchFields.result.name;
+            }
+            // console.log(openStatus);
+            let openStatus = "";
+            if( placeSearchFields.result.opening_hours.open_now == undefined) {
+                openStatus = "";
+            } else {
+                openStatus =  placeSearchFields.result.opening_hours.open_now;
+            }
+            // console.log(price_level);
+            let price_level = "";
+            if( placeSearchFields.result.price_level == undefined) {
+                price_level = "";
+            } else {
+                price_level =  placeSearchFields.result.price_level;
+            }
+            // console.log(rating);
+            let rating = "";
+            if(placeSearchFields.result.rating == undefined) {
+                rating = "";
+            } else {
+                rating =  placeSearchFields.result.rating;
+            }
+            // console.log(address);
+            let address = "";
+            if(placeSearchFields.result.formatted_address == undefined) {
+                address = "";
+            } else {
+                address =  placeSearchFields.result.formatted_address;
+            }
+            // console.log(locationLat);
+            let locationLat = "";
+            if(placeSearchFields.result.geometry.location.lat == undefined) {
+                locationLat = "";
+            } else {
+                locationLat =  placeSearchFields.result.geometry.location.lat;
+            }
+            // console.log(locationLon);
+            let locationLon = "";
+            if(placeSearchFields.result.geometry.location.lng == undefined) {
+                locationLon = "";
+            } else {
+                locationLon =  placeSearchFields.result.geometry.location.lng;
+            }
+            // console.log(viewportNElat);
+            let viewportNElat = "";
+            if(placeSearchFields.result.geometry.viewport.northeast.lat == undefined) {
+                viewportNElat = "";
+            } else {
+                viewportNElat =  placeSearchFields.result.geometry.viewport.northeast.lat;
+            }
+            // console.log(viewportNElon);
+            let viewportNElon = "";
+            if(placeSearchFields.result.geometry.viewport.northeast.lng == undefined) {
+                viewportNElon = "";
+            } else {
+                viewportNElon =  placeSearchFields.result.geometry.viewport.northeast.lng;
+            }
+            // console.log(viewportSWlat);
+            let viewportSWlat = "";
+            if(placeSearchFields.result.geometry.viewport.southwest.lat == undefined) {
+                viewportSWlat = "";
+            } else {
+                viewportSWlat =  placeSearchFields.result.geometry.viewport.southwest.lat;
+            }
+            // console.log(viewportSWlon);
+            let viewportSWlon = "";
+            if(placeSearchFields.result.geometry.viewport.southwest.lon == undefined) {
+                viewportSWlon = "";
+            } else {
+                viewportSWlon =  placeSearchFields.result.geometry.viewport.southwest.lon;
+            }
             currentQuery2[i] = {
                 "uid": placeID,
-                "btid": "", // From BT: venue_info.venue_id
+                "btid": "",
                 "phoneNum": phoneNum,
                 "website": website,
                 "mapsURL": mapsURL,
-                "btTimeZone" : "", // From BT: venue_info.venue_timezone 
+                "btTimeZone" : "", 
                 "operatingHours": operatingHours,
                 "openTime": openTime,
                 "restaurantName": restaurantName,
-                "btName": "", // From BT: venue_info.venue_name
+                "btName": "",
                 "openStatus": openStatus,
                 "price_level": price_level,
                 "rating": rating,
                 "address": address,
-                "btAddress": "", // From BT: venue_info.venue_address
+                "btAddress": "",
                 "photo": photo,
                 "locationLat": locationLat,
                 "locationLon": locationLon,
@@ -150,31 +230,31 @@ function searchPerPlace(placesSearchData) {
                 "leastBusTime" : "",
                 "percentBus" : "",
                 "btMon0" : {  
-                    "busy_hours" : "", // From BT: analysis.0.busy_hours
+                    "busy_hours" : "",
                     "day_code" : 0, 
-                    "day_max" : "", // From BT: analysis.0.day_info.day_max
-                    "day_mean" : "", // From BT: analysis.0.day_info.day_mean
-                    "day_rank_max" : "", // From BT: analysis.0.day_info.day_rank_max
-                    "day_rank_mean" : "", // From BT: analysis.0.day_info.day_rank_mean
+                    "day_max" : "",
+                    "day_mean" : "",
+                    "day_rank_max" : "",
+                    "day_rank_mean" : "",
                     "day_text" : "Monday",
-                    "venue_closed" : "", // From BT: analysis.0.day_info.venue_closed
-                    "venue_open" : "", // From BT: analysis.0.day_info.venue_open
+                    "venue_closed" : "",
+                    "venue_open" : "",
                     "hours_analysis" : {
                         "hour0_6AM_24" : 6,
                         "hour0_6AM_12" : 6,
                         "hour0_6AM_AMPM" : "AM",
-                        "hour0_6AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.0.intensity_txt
-                        "hour0_6AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.0.intensity_nr
+                        "hour0_6AM_intensity_text" : "",
+                        "hour0_6AM_intensity_val" : "",
                         "hour1_7AM_24" : 7,
                         "hour1_7AM_12" : 7,
                         "hour1_7AM_AMPM" : "AM",
-                        "hour1_7AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.1.intensity_txt
-                        "hour1_7AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.1.intensity_nr
+                        "hour1_7AM_intensity_text" : "",
+                        "hour1_7AM_intensity_val" : "",
                         "hour2_8AM_24" : 8,
                         "hour2_8AM_12" : 8,
                         "hour2_8AM_AMPM" : "AM",
-                        "hour2_8AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.2.intensity_txt
-                        "hour2_8AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.2.intensity_nr
+                        "hour2_8AM_intensity_text" : "",
+                        "hour2_8AM_intensity_val" : "",
                         "hour3_9AM_24" : 9,
                         "hour3_9AM_12" : 9,
                         "hour3_9AM_AMPM" : "AM",
@@ -208,78 +288,78 @@ function searchPerPlace(placesSearchData) {
                         "hour9_3PM_24" : 15,
                         "hour9_3PM_12" : 3,
                         "hour9_3PM_AMPM" : "PM",
-                        "hour9_3PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.8.intensity_txt
-                        "hour9_3PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.8.intensity_nr
+                        "hour9_3PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.9.intensity_txt
+                        "hour9_3PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.9.intensity_nr
                         "hour10_4PM_24" : 16,
                         "hour10_4PM_12" : 4,
                         "hour10_4PM_AMPM" : "PM",
-                        "hour10_4PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.9.intensity_txt
-                        "hour10_4PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.9.intensity_nr
+                        "hour10_4PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.10.intensity_txt
+                        "hour10_4PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.10.intensity_nr
                         "hour11_5PM_24" : 17,
                         "hour11_5PM_12" : 5,
                         "hour11_5PM_AMPM" : "PM",
-                        "hour11_5PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.10.intensity_txt
-                        "hour11_5PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.10.intensity_nr
+                        "hour11_5PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.11.intensity_txt
+                        "hour11_5PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.11.intensity_nr
                         "hour12_6PM_24" : 18,
                         "hour12_6PM_12" : 6,
                         "hour12_6PM_AMPM" : "PM",
-                        "hour12_6PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.11.intensity_txt
-                        "hour12_6PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.11.intensity_nr
+                        "hour12_6PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.12.intensity_txt
+                        "hour12_6PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.12.intensity_nr
                         "hour13_7PM_24" : 19,
                         "hour13_7PM_12" : 7,
                         "hour13_7PM_AMPM" : "PM",
-                        "hour13_7PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.12.intensity_txt
-                        "hour13_7PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.12.intensity_nr
+                        "hour13_7PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.13.intensity_txt
+                        "hour13_7PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.13.intensity_nr
                         "hour14_8PM_24" : 20,
                         "hour14_8PM_12" : 8,
                         "hour14_8PM_AMPM" : "PM",
-                        "hour14_8PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.13.intensity_txt
-                        "hour14_8PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.13.intensity_nr
+                        "hour14_8PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.14.intensity_txt
+                        "hour14_8PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.14.intensity_nr
                         "hour15_9PM_24" : 21,
                         "hour15_9PM_12" : 9,
                         "hour15_9PM_AMPM" : "PM",
-                        "hour15_9PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.14.intensity_txt
-                        "hour15_9PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.14.intensity_nr
+                        "hour15_9PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.15.intensity_txt
+                        "hour15_9PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.15.intensity_nr
                         "hour16_10PM_24" : 22,
                         "hour16_10PM_12" : 10,
                         "hour16_10PM_AMPM" : "PM",
-                        "hour16_10PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.15.intensity_txt
-                        "hour16_10PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.15.intensity_nr
+                        "hour16_10PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.16.intensity_txt
+                        "hour16_10PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.16.intensity_nr
                         "hour17_11PM_24" : 23,
                         "hour17_11PM_12" : 11,
                         "hour17_11PM_AMPM" : "PM",
-                        "hour17_11PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.16.intensity_txt
-                        "hour17_11PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.16.intensity_nr
+                        "hour17_11PM_intensity_text" : "", // From BT: analysis.0.hour_analysis.17.intensity_txt
+                        "hour17_11PM_intensity_val" : "", // From BT: analysis.0.hour_analysis.17.intensity_nr
                         "hour18_12AM_24" : 24,
                         "hour18_12AM_12" : 12,
                         "hour18_12AM_AMPM" : "AM",
-                        "hour18_12AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.17.intensity_txt
-                        "hour18_12AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.17.intensity_nr
+                        "hour18_12AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.18.intensity_txt
+                        "hour18_12AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.18.intensity_nr
                         "hour19_1AM_24" : 1,
                         "hour19_1AM_12" : 1,
                         "hour19_1AM_AMPM" : "AM",
-                        "hour19_1AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.18.intensity_txt
-                        "hour19_1AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.18.intensity_nr
+                        "hour19_1AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.19.intensity_txt
+                        "hour19_1AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.19.intensity_nr
                         "hour20_2AM_24" : 2,
                         "hour20_2AM_12" : 2,
                         "hour20_2AM_AMPM" : "AM",
-                        "hour20_2AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.19.intensity_txt
-                        "hour20_2AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.19.intensity_nr
+                        "hour20_2AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.20.intensity_txt
+                        "hour20_2AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.20.intensity_nr
                         "hour21_3AM_24" : 3,
                         "hour21_3AM_12" : 3,
                         "hour21_3AM_AMPM" : "AM",
-                        "hour21_3AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.20.intensity_txt
-                        "hour21_3AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.20.intensity_nr
+                        "hour21_3AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.21.intensity_txt
+                        "hour21_3AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.21.intensity_nr
                         "hour22_4AM_24" : 4,
                         "hour22_4AM_12" : 4,
                         "hour22_4AM_AMPM" : "AM",
-                        "hour22_4AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.21.intensity_txt
-                        "hour22_4AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.21.intensity_nr
+                        "hour22_4AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.22.intensity_txt
+                        "hour22_4AM_intensity_val" : "", // From BT: analysis.0.hour_analysis.22.intensity_nr
                         "hour23_5AM_24" : 5,
                         "hour23_5AM_12" : 5,
                         "hour23_5AM_AMPM" : "AM",
-                        "hour23_5AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.22.intensity_txt
-                        "hour23_5AM_intensity_val" : "" // From BT: analysis.0.hour_analysis.22.intensity_nr
+                        "hour23_5AM_intensity_text" : "", // From BT: analysis.0.hour_analysis.23.intensity_txt
+                        "hour23_5AM_intensity_val" : "" // From BT: analysis.0.hour_analysis.23.intensity_nr
                     }
                 },
                 "btTue1" : {  
@@ -1081,12 +1161,11 @@ function searchPerPlace(placesSearchData) {
                     }
                 }
 
-            }
+            } 
             // set the object to the script-specific array of restaurants  
             restaurants[i] = currentQuery2[i];
             console.log(currentQuery2);
             console.log(restaurants);
-
             if (itemsProcessed === currentQuery2.length) {
                 console.log('ITEMS PROCESSED', itemsProcessed, currentQuery2.length)
                 // saveRestaurants(restaurants);
@@ -1101,7 +1180,7 @@ function searchPerPlace(placesSearchData) {
 
 // ! RUN THE QUERY AND AJAX CALLS
 runQuery();
-
+ 
 // ************** CREATE LISTINGS ************** //
 function createListings () {
     // for (let i=0; i < currentQuery2.length; i++) {
@@ -1116,7 +1195,11 @@ function createListings () {
         }
         // update the uid and btid parameters per main div
         $(thisDiv).attr("uid", restaurants[i].uid);
-        $(thisDiv).attr("btid", restaurants[i].venue_id);
+        $(thisDiv).attr("btid", restaurants[i].btid);
+        
+        $(".card-link").attr("uid", restaurants[i].uid);
+        $(".card-link").attr("btid", restaurants[i].btid);
+        
 
         // show / hide favorites icon on listing
         let thisFav = "#favorite-" + (i+1);
@@ -1129,8 +1212,11 @@ function createListings () {
         // update image
         let thisImgURL = "#restImga-" + (i+1);
         let thisImgSRC = "#restImage-" + (i+1);
-        $(thisImgURL).attr("href", "detailsView.html");
+        // $(thisImgURL).attr("href", "detailsView.html");
         $(thisImgSRC).attr("src", restaurants[(i+1)].photo);
+        // update the uid and btid parameters per img
+        $(thisImgSRC).attr("uid", restaurants[i].uid);
+        $(thisImgSRC).attr("btid", restaurants[i].btid);
 
         // update Safety rating
         let thisSafetyDef = "#safetyRatingDefault-" + (i+1);
@@ -1363,7 +1449,10 @@ function createListings () {
         let restNm = "#restNameSpan-" + (i+1);
         $(restNm).html(restaurants[i].restaurantName);
         let restLnk = "#titleLink-" + (i+1);
-        $(restLnk).attr("href", "detailsView.html");
+        // $(restLnk).attr("href", "detailsView.html");
+        // update the uid and btid parameters per restaurant name
+        $(restNm).attr("uid", restaurants[i].uid);
+        $(restNm).attr("btid", restaurants[i].venue_id);
 
         // link the directions button 
         let mapbtn = "#mapitBtn-" + (i+1);
@@ -1380,24 +1469,477 @@ function createListings () {
 
     }
 
-// ************** CREATE DETAILS PAGE SCRIPT ************** //
+// ************** HANDLE THE CLICK:  ************** //
+let currentForecast = []
+let currentRestaurant = []; 
+let currRestIndex;
+let currBTforecast = "";
+let rName = "";
+let rAddress = "";
+let btURL = ""; 
+let cardID = "";
+console.log("BestTimeApp.io URL: " + btURL);
 
 //Listen for click on the card click.
-$(".restaurant-card .card-link").on("click", function() {
-    console.log("clicked on:" + $(this).html());
-})
+$(".card-link").click(function () {
+    let cardUID = $(this).attr("uid");
+    let cardBTID = $(this).attr("btid");
+    console.log("cardUID: " + cardUID);
+    // ************** FIND THE MATCHING RESTAURANT OBJECT:  ************** //
+    restaurants.forEach(function(r) {
+        if (r.uid == cardUID) {
+            currRestIndex =  $(restaurants).index(r);
+    // ************** POPULATE A CURRENTRESTAURANT VAR TO REFERENCE:  ************** //            
+            currentRestaurant = restaurants[currRestIndex];
+            rName = currentRestaurant.restaurantName;
+            rAddress = currentRestaurant.address
+            console.log("cardUID: " + cardUID);
+            cardID = cardUID
+            console.log("cardID: " + cardID);
+            console.log("currentRestaurant Object: " + currentRestaurant);  
+            localStorage.setItem("lsRestaurants", JSON.stringify(restaurants));
+            localStorage.setItem("currentRestaurant", JSON.stringify(currentRestaurant));
+        } 
+    });
+    // ************** FORECAST CHECK AND HANDLER:  ************** //            
+            // Check for forecast in restaurants of matching uid
+            // Generate a forecast if not - store in currentRestaurant object and update restaurant object
+    if (restaurants[currRestIndex].btid == "") {
+        // Run a forecast and store it in this object
+        rName = restaurants[currRestIndex].restaurantName;
+        console.log("Restaurant name (rName): " + rName);
+        rAddress = restaurants[currRestIndex].address;
+        console.log("Restaurant address (rAddress): " + rName);
+        btURL = `${proxy_url}https://besttime.app/api/v1/forecasts?api_key_private=${priKey}&venue_name=${rName}&venue_address=${rAddress}`;
+        console.log("BestTimeApp.io URL: " + btURL);
+        let settings = {
+            "url": btURL,
+            "method": "POST"
+        };
+        $.ajax(settings).then(function (response) {
+            console.log("BT Ajax call response: " + response);
+            // log to a var currentBTforecast
+            currBTforecast = response;
+            localStorage.setItem("currBTforecast", JSON.stringify(currBTforecast));
+            // ************** LOCAL OBJECT FORECAST VALUES UPDATER:  ************** //                    
+            // update the btid key:value (aka, "k:v")
+            restaurants[currRestIndex].btid = response.venue_info.venue_id;
+            // update the btTimeZone k:v
+            restaurants[currRestIndex].btTimeZone = response.venue_info.venue_timezone;
+            // update the btName k:v
+            restaurants[currRestIndex].btName = response.venue_info.venue_name;
+            // update the btAddress k:v
+            restaurants[currRestIndex].btAddress = response.venue_info.venue_address;
+            // update the btMon0 k:v array
+            restaurants[currRestIndex].btMon0.busy_hours = response.analysis[0].busy_hours;
+            restaurants[currRestIndex].btMon0.day_max = response.analysis[0].day_info.day_max;
+            restaurants[currRestIndex].btMon0.day_mean = response.analysis[0].day_info.day_mean;
+            restaurants[currRestIndex].btMon0.day_rank_max = response.analysis[0].day_info.day_rank_max;
+            restaurants[currRestIndex].btMon0.day_rank_mean = response.analysis[0].day_info.day_rank_mean;
+            restaurants[currRestIndex].btMon0.venue_closed = response.analysis[0].day_info.venue_closed;
+            restaurants[currRestIndex].btMon0.venue_open = response.analysis[0].day_info.venue_open;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour0_6AM_intensity_text = response.analysis[0].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour0_6AM_intensity_val = response.analysis[0].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour1_7AM_intensity_text = response.analysis[0].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour1_7AM_intensity_val = response.analysis[0].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour2_8AM_intensity_text = response.analysis[0].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour2_8AM_intensity_val = response.analysis[0].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour3_9AM_intensity_text = response.analysis[0].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour3_9AM_intensity_val = response.analysis[0].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour4_10AM_intensity_text = response.analysis[0].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour4_10AM_intensity_val = response.analysis[0].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour5_11AM_intensity_text = response.analysis[0].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour5_11AM_intensity_val = response.analysis[0].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour6_12PM_intensity_text = response.analysis[0].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour6_12PM_intensity_val = response.analysis[0].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour7_1PM_intensity_text = response.analysis[0].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour7_1PM_intensity_val = response.analysis[0].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour8_2PM_intensity_text = response.analysis[0].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour8_2PM_intensity_val = response.analysis[0].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour9_3PM_intensity_text = response.analysis[0].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour9_3PM_intensity_val = response.analysis[0].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour10_4PM_intensity_text = response.analysis[0].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour10_4PM_intensity_val = response.analysis[0].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour11_5PM_intensity_text = response.analysis[0].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour11_5PM_intensity_val = response.analysis[0].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour12_6PM_intensity_text = response.analysis[0].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour12_6PM_intensity_val = response.analysis[0].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour13_7PM_intensity_text = response.analysis[0].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour13_7PM_intensity_val = response.analysis[0].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour14_8PM_intensity_text = response.analysis[0].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour14_8PM_intensity_val = response.analysis[0].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour15_9PM_intensity_text = response.analysis[0].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour15_9PM_intensity_val = response.analysis[0].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour16_10PM_intensity_text = response.analysis[0].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour16_10PM_intensity_val = response.analysis[0].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour17_11PM_intensity_text = response.analysis[0].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour17_11PM_intensity_val = response.analysis[0].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour18_12AM_intensity_text = response.analysis[0].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour18_12AM_intensity_val = response.analysis[0].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour19_1AM_intensity_text = response.analysis[0].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour19_1AM_intensity_val = response.analysis[0].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour20_2AM_intensity_text = response.analysis[0].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour20_2AM_intensity_val = response.analysis[0].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour21_3AM_intensity_text = response.analysis[0].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour21_3AM_intensity_val = response.analysis[0].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour22_4AM_intensity_text = response.analysis[0].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour22_4AM_intensity_val = response.analysis[0].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour23_5AM_intensity_text = response.analysis[0].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btMon0.hours_analysis.hour23_5AM_intensity_val = response.analysis[0].hour_analysis[23].intensity_nr;
+        // update the btTue1 k:v array
+            restaurants[currRestIndex].btTue1.busy_hours = response.analysis[1].busy_hours;
+            restaurants[currRestIndex].btTue1.day_max = response.analysis[1].day_info.day_max;
+            restaurants[currRestIndex].btTue1.day_mean = response.analysis[1].day_info.day_mean;
+            restaurants[currRestIndex].btTue1.day_rank_max = response.analysis[1].day_info.day_rank_max;
+            restaurants[currRestIndex].btTue1.day_rank_mean = response.analysis[1].day_info.day_rank_mean;
+            restaurants[currRestIndex].btTue1.venue_closed = response.analysis[1].day_info.venue_closed;
+            restaurants[currRestIndex].btTue1.venue_open = response.analysis[1].day_info.venue_open;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour0_6AM_intensity_text = response.analysis[1].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour0_6AM_intensity_val = response.analysis[1].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour1_7AM_intensity_text = response.analysis[1].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour1_7AM_intensity_val = response.analysis[1].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour2_8AM_intensity_text = response.analysis[1].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour2_8AM_intensity_val = response.analysis[1].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour3_9AM_intensity_text = response.analysis[1].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour3_9AM_intensity_val = response.analysis[1].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour4_10AM_intensity_text = response.analysis[1].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour4_10AM_intensity_val = response.analysis[1].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour5_11AM_intensity_text = response.analysis[1].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour5_11AM_intensity_val = response.analysis[1].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour6_12PM_intensity_text = response.analysis[1].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour6_12PM_intensity_val = response.analysis[1].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour7_1PM_intensity_text = response.analysis[1].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour7_1PM_intensity_val = response.analysis[1].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour8_2PM_intensity_text = response.analysis[1].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour8_2PM_intensity_val = response.analysis[1].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour9_3PM_intensity_text = response.analysis[1].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour9_3PM_intensity_val = response.analysis[1].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour10_4PM_intensity_text = response.analysis[1].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour10_4PM_intensity_val = response.analysis[1].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour11_5PM_intensity_text = response.analysis[1].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour11_5PM_intensity_val = response.analysis[1].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour12_6PM_intensity_text = response.analysis[1].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour12_6PM_intensity_val = response.analysis[1].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour13_7PM_intensity_text = response.analysis[1].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour13_7PM_intensity_val = response.analysis[1].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour14_8PM_intensity_text = response.analysis[1].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour14_8PM_intensity_val = response.analysis[1].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour15_9PM_intensity_text = response.analysis[1].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour15_9PM_intensity_val = response.analysis[1].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour16_10PM_intensity_text = response.analysis[1].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour16_10PM_intensity_val = response.analysis[1].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour17_11PM_intensity_text = response.analysis[1].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour17_11PM_intensity_val = response.analysis[1].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour18_12AM_intensity_text = response.analysis[1].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour18_12AM_intensity_val = response.analysis[1].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour19_1AM_intensity_text = response.analysis[1].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour19_1AM_intensity_val = response.analysis[1].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour20_2AM_intensity_text = response.analysis[1].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour20_2AM_intensity_val = response.analysis[1].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour21_3AM_intensity_text = response.analysis[1].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour21_3AM_intensity_val = response.analysis[1].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour22_4AM_intensity_text = response.analysis[1].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour22_4AM_intensity_val = response.analysis[1].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour23_5AM_intensity_text = response.analysis[1].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btTue1.hours_analysis.hour23_5AM_intensity_val = response.analysis[1].hour_analysis[23].intensity_nr;
+        // update the btWed2 k:v array
+            restaurants[currRestIndex].btWed2.busy_hours = response.analysis[2].busy_hours;
+            restaurants[currRestIndex].btWed2.day_max = response.analysis[2].day_info.day_max;
+            restaurants[currRestIndex].btWed2.day_mean = response.analysis[2].day_info.day_mean;
+            restaurants[currRestIndex].btWed2.day_rank_max = response.analysis[2].day_info.day_rank_max;
+            restaurants[currRestIndex].btWed2.day_rank_mean = response.analysis[2].day_info.day_rank_mean;
+            restaurants[currRestIndex].btWed2.venue_closed = response.analysis[2].day_info.venue_closed;
+            restaurants[currRestIndex].btWed2.venue_open = response.analysis[2].day_info.venue_open;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour0_6AM_intensity_text = response.analysis[2].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour0_6AM_intensity_val = response.analysis[2].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour1_7AM_intensity_text = response.analysis[2].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour1_7AM_intensity_val = response.analysis[2].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour2_8AM_intensity_text = response.analysis[2].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour2_8AM_intensity_val = response.analysis[2].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour3_9AM_intensity_text = response.analysis[2].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour3_9AM_intensity_val = response.analysis[2].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour4_10AM_intensity_text = response.analysis[2].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour4_10AM_intensity_val = response.analysis[2].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour5_11AM_intensity_text = response.analysis[2].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour5_11AM_intensity_val = response.analysis[2].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour6_12PM_intensity_text = response.analysis[2].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour6_12PM_intensity_val = response.analysis[2].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour7_1PM_intensity_text = response.analysis[2].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour7_1PM_intensity_val = response.analysis[2].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour8_2PM_intensity_text = response.analysis[2].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour8_2PM_intensity_val = response.analysis[2].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour9_3PM_intensity_text = response.analysis[2].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour9_3PM_intensity_val = response.analysis[2].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour10_4PM_intensity_text = response.analysis[2].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour10_4PM_intensity_val = response.analysis[2].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour11_5PM_intensity_text = response.analysis[2].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour11_5PM_intensity_val = response.analysis[2].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour12_6PM_intensity_text = response.analysis[2].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour12_6PM_intensity_val = response.analysis[2].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour13_7PM_intensity_text = response.analysis[2].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour13_7PM_intensity_val = response.analysis[2].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour14_8PM_intensity_text = response.analysis[2].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour14_8PM_intensity_val = response.analysis[2].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour15_9PM_intensity_text = response.analysis[2].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour15_9PM_intensity_val = response.analysis[2].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour16_10PM_intensity_text = response.analysis[2].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour16_10PM_intensity_val = response.analysis[2].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour17_11PM_intensity_text = response.analysis[2].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour17_11PM_intensity_val = response.analysis[2].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour18_12AM_intensity_text = response.analysis[2].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour18_12AM_intensity_val = response.analysis[2].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour19_1AM_intensity_text = response.analysis[2].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour19_1AM_intensity_val = response.analysis[2].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour20_2AM_intensity_text = response.analysis[2].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour20_2AM_intensity_val = response.analysis[2].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour21_3AM_intensity_text = response.analysis[2].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour21_3AM_intensity_val = response.analysis[2].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour22_4AM_intensity_text = response.analysis[2].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour22_4AM_intensity_val = response.analysis[2].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour23_5AM_intensity_text = response.analysis[2].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btWed2.hours_analysis.hour23_5AM_intensity_val = response.analysis[2].hour_analysis[23].intensity_nr;
+        // update the btThu3 k:v array
+            restaurants[currRestIndex].btThu3.busy_hours = response.analysis[3].busy_hours;
+            restaurants[currRestIndex].btThu3.day_max = response.analysis[3].day_info.day_max;
+            restaurants[currRestIndex].btThu3.day_mean = response.analysis[3].day_info.day_mean;
+            restaurants[currRestIndex].btThu3.day_rank_max = response.analysis[3].day_info.day_rank_max;
+            restaurants[currRestIndex].btThu3.day_rank_mean = response.analysis[3].day_info.day_rank_mean;
+            restaurants[currRestIndex].btThu3.venue_closed = response.analysis[3].day_info.venue_closed;
+            restaurants[currRestIndex].btThu3.venue_open = response.analysis[3].day_info.venue_open;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour0_6AM_intensity_text = response.analysis[3].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour0_6AM_intensity_val = response.analysis[3].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour1_7AM_intensity_text = response.analysis[3].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour1_7AM_intensity_val = response.analysis[3].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour2_8AM_intensity_text = response.analysis[3].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour2_8AM_intensity_val = response.analysis[3].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour3_9AM_intensity_text = response.analysis[3].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour3_9AM_intensity_val = response.analysis[3].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour4_10AM_intensity_text = response.analysis[3].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour4_10AM_intensity_val = response.analysis[3].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour5_11AM_intensity_text = response.analysis[3].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour5_11AM_intensity_val = response.analysis[3].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour6_12PM_intensity_text = response.analysis[3].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour6_12PM_intensity_val = response.analysis[3].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour7_1PM_intensity_text = response.analysis[3].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour7_1PM_intensity_val = response.analysis[3].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour8_2PM_intensity_text = response.analysis[3].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour8_2PM_intensity_val = response.analysis[3].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour9_3PM_intensity_text = response.analysis[3].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour9_3PM_intensity_val = response.analysis[3].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour10_4PM_intensity_text = response.analysis[3].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour10_4PM_intensity_val = response.analysis[3].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour11_5PM_intensity_text = response.analysis[3].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour11_5PM_intensity_val = response.analysis[3].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour12_6PM_intensity_text = response.analysis[3].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour12_6PM_intensity_val = response.analysis[3].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour13_7PM_intensity_text = response.analysis[3].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour13_7PM_intensity_val = response.analysis[3].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour14_8PM_intensity_text = response.analysis[3].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour14_8PM_intensity_val = response.analysis[3].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour15_9PM_intensity_text = response.analysis[3].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour15_9PM_intensity_val = response.analysis[3].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour16_10PM_intensity_text = response.analysis[3].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour16_10PM_intensity_val = response.analysis[3].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour17_11PM_intensity_text = response.analysis[3].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour17_11PM_intensity_val = response.analysis[3].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour18_12AM_intensity_text = response.analysis[3].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour18_12AM_intensity_val = response.analysis[3].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour19_1AM_intensity_text = response.analysis[3].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour19_1AM_intensity_val = response.analysis[3].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour20_2AM_intensity_text = response.analysis[3].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour20_2AM_intensity_val = response.analysis[3].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour21_3AM_intensity_text = response.analysis[3].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour21_3AM_intensity_val = response.analysis[3].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour22_4AM_intensity_text = response.analysis[3].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour22_4AM_intensity_val = response.analysis[3].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour23_5AM_intensity_text = response.analysis[3].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btThu3.hours_analysis.hour23_5AM_intensity_val = response.analysis[3].hour_analysis[23].intensity_nr;
+        // update the btFri4 k:v array
+            restaurants[currRestIndex].btFri4.busy_hours = response.analysis[4].busy_hours;
+            restaurants[currRestIndex].btFri4.day_max = response.analysis[4].day_info.day_max;
+            restaurants[currRestIndex].btFri4.day_mean = response.analysis[4].day_info.day_mean;
+            restaurants[currRestIndex].btFri4.day_rank_max = response.analysis[4].day_info.day_rank_max;
+            restaurants[currRestIndex].btFri4.day_rank_mean = response.analysis[4].day_info.day_rank_mean;
+            restaurants[currRestIndex].btFri4.venue_closed = response.analysis[4].day_info.venue_closed;
+            restaurants[currRestIndex].btFri4.venue_open = response.analysis[4].day_info.venue_open;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour0_6AM_intensity_text = response.analysis[4].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour0_6AM_intensity_val = response.analysis[4].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour1_7AM_intensity_text = response.analysis[4].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour1_7AM_intensity_val = response.analysis[4].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour2_8AM_intensity_text = response.analysis[4].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour2_8AM_intensity_val = response.analysis[4].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour3_9AM_intensity_text = response.analysis[4].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour3_9AM_intensity_val = response.analysis[4].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour4_10AM_intensity_text = response.analysis[4].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour4_10AM_intensity_val = response.analysis[4].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour5_11AM_intensity_text = response.analysis[4].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour5_11AM_intensity_val = response.analysis[4].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour6_12PM_intensity_text = response.analysis[4].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour6_12PM_intensity_val = response.analysis[4].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour7_1PM_intensity_text = response.analysis[4].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour7_1PM_intensity_val = response.analysis[4].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour8_2PM_intensity_text = response.analysis[4].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour8_2PM_intensity_val = response.analysis[4].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour9_3PM_intensity_text = response.analysis[4].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour9_3PM_intensity_val = response.analysis[4].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour10_4PM_intensity_text = response.analysis[4].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour10_4PM_intensity_val = response.analysis[4].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour11_5PM_intensity_text = response.analysis[4].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour11_5PM_intensity_val = response.analysis[4].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour12_6PM_intensity_text = response.analysis[4].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour12_6PM_intensity_val = response.analysis[4].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour13_7PM_intensity_text = response.analysis[4].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour13_7PM_intensity_val = response.analysis[4].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour14_8PM_intensity_text = response.analysis[4].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour14_8PM_intensity_val = response.analysis[4].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour15_9PM_intensity_text = response.analysis[4].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour15_9PM_intensity_val = response.analysis[4].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour16_10PM_intensity_text = response.analysis[4].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour16_10PM_intensity_val = response.analysis[4].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour17_11PM_intensity_text = response.analysis[4].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour17_11PM_intensity_val = response.analysis[4].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour18_12AM_intensity_text = response.analysis[4].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour18_12AM_intensity_val = response.analysis[4].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour19_1AM_intensity_text = response.analysis[4].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour19_1AM_intensity_val = response.analysis[4].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour20_2AM_intensity_text = response.analysis[4].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour20_2AM_intensity_val = response.analysis[4].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour21_3AM_intensity_text = response.analysis[4].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour21_3AM_intensity_val = response.analysis[4].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour22_4AM_intensity_text = response.analysis[4].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour22_4AM_intensity_val = response.analysis[4].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour23_5AM_intensity_text = response.analysis[4].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btFri4.hours_analysis.hour23_5AM_intensity_val = response.analysis[4].hour_analysis[23].intensity_nr;
+        // update the btSat5 k:v array
+            restaurants[currRestIndex].btSat5.busy_hours = response.analysis[5].busy_hours;
+            restaurants[currRestIndex].btSat5.day_max = response.analysis[5].day_info.day_max;
+            restaurants[currRestIndex].btSat5.day_mean = response.analysis[5].day_info.day_mean;
+            restaurants[currRestIndex].btSat5.day_rank_max = response.analysis[5].day_info.day_rank_max;
+            restaurants[currRestIndex].btSat5.day_rank_mean = response.analysis[5].day_info.day_rank_mean;
+            restaurants[currRestIndex].btSat5.venue_closed = response.analysis[5].day_info.venue_closed;
+            restaurants[currRestIndex].btSat5.venue_open = response.analysis[5].day_info.venue_open;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour0_6AM_intensity_text = response.analysis[5].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour0_6AM_intensity_val = response.analysis[5].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour1_7AM_intensity_text = response.analysis[5].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour1_7AM_intensity_val = response.analysis[5].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour2_8AM_intensity_text = response.analysis[5].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour2_8AM_intensity_val = response.analysis[5].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour3_9AM_intensity_text = response.analysis[5].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour3_9AM_intensity_val = response.analysis[5].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour4_10AM_intensity_text = response.analysis[5].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour4_10AM_intensity_val = response.analysis[5].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour5_11AM_intensity_text = response.analysis[5].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour5_11AM_intensity_val = response.analysis[5].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour6_12PM_intensity_text = response.analysis[5].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour6_12PM_intensity_val = response.analysis[5].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour7_1PM_intensity_text = response.analysis[5].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour7_1PM_intensity_val = response.analysis[5].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour8_2PM_intensity_text = response.analysis[5].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour8_2PM_intensity_val = response.analysis[5].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour9_3PM_intensity_text = response.analysis[5].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour9_3PM_intensity_val = response.analysis[5].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour10_4PM_intensity_text = response.analysis[5].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour10_4PM_intensity_val = response.analysis[5].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour11_5PM_intensity_text = response.analysis[5].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour11_5PM_intensity_val = response.analysis[5].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour12_6PM_intensity_text = response.analysis[5].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour12_6PM_intensity_val = response.analysis[5].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour13_7PM_intensity_text = response.analysis[5].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour13_7PM_intensity_val = response.analysis[5].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour14_8PM_intensity_text = response.analysis[5].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour14_8PM_intensity_val = response.analysis[5].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour15_9PM_intensity_text = response.analysis[5].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour15_9PM_intensity_val = response.analysis[5].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour16_10PM_intensity_text = response.analysis[5].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour16_10PM_intensity_val = response.analysis[5].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour17_11PM_intensity_text = response.analysis[5].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour17_11PM_intensity_val = response.analysis[5].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour18_12AM_intensity_text = response.analysis[5].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour18_12AM_intensity_val = response.analysis[5].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour19_1AM_intensity_text = response.analysis[5].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour19_1AM_intensity_val = response.analysis[5].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour20_2AM_intensity_text = response.analysis[5].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour20_2AM_intensity_val = response.analysis[5].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour21_3AM_intensity_text = response.analysis[5].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour21_3AM_intensity_val = response.analysis[5].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour22_4AM_intensity_text = response.analysis[5].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour22_4AM_intensity_val = response.analysis[5].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour23_5AM_intensity_text = response.analysis[5].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btSat5.hours_analysis.hour23_5AM_intensity_val = response.analysis[5].hour_analysis[23].intensity_nr;
+            // update the btSun6 k:v array
+            restaurants[currRestIndex].btSun6.busy_hours = response.analysis[6].busy_hours;
+            restaurants[currRestIndex].btSun6.day_max = response.analysis[6].day_info.day_max;
+            restaurants[currRestIndex].btSun6.day_mean = response.analysis[6].day_info.day_mean;
+            restaurants[currRestIndex].btSun6.day_rank_max = response.analysis[6].day_info.day_rank_max;
+            restaurants[currRestIndex].btSun6.day_rank_mean = response.analysis[6].day_info.day_rank_mean;
+            restaurants[currRestIndex].btSun6.venue_closed = response.analysis[6].day_info.venue_closed;
+            restaurants[currRestIndex].btSun6.venue_open = response.analysis[6].day_info.venue_open;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour0_6AM_intensity_text = response.analysis[6].hour_analysis[0].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour0_6AM_intensity_val = response.analysis[6].hour_analysis[0].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour1_7AM_intensity_text = response.analysis[6].hour_analysis[1].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour1_7AM_intensity_val = response.analysis[6].hour_analysis[1].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour2_8AM_intensity_text = response.analysis[6].hour_analysis[2].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour2_8AM_intensity_val = response.analysis[6].hour_analysis[2].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour3_9AM_intensity_text = response.analysis[6].hour_analysis[3].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour3_9AM_intensity_val = response.analysis[6].hour_analysis[3].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour4_10AM_intensity_text = response.analysis[6].hour_analysis[4].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour4_10AM_intensity_val = response.analysis[6].hour_analysis[4].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour5_11AM_intensity_text = response.analysis[6].hour_analysis[5].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour5_11AM_intensity_val = response.analysis[6].hour_analysis[5].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour6_12PM_intensity_text = response.analysis[6].hour_analysis[6].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour6_12PM_intensity_val = response.analysis[6].hour_analysis[6].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour7_1PM_intensity_text = response.analysis[6].hour_analysis[7].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour7_1PM_intensity_val = response.analysis[6].hour_analysis[7].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour8_2PM_intensity_text = response.analysis[6].hour_analysis[8].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour8_2PM_intensity_val = response.analysis[6].hour_analysis[8].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour9_3PM_intensity_text = response.analysis[6].hour_analysis[9].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour9_3PM_intensity_val = response.analysis[6].hour_analysis[9].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour10_4PM_intensity_text = response.analysis[6].hour_analysis[10].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour10_4PM_intensity_val = response.analysis[6].hour_analysis[10].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour11_5PM_intensity_text = response.analysis[6].hour_analysis[11].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour11_5PM_intensity_val = response.analysis[6].hour_analysis[11].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour12_6PM_intensity_text = response.analysis[6].hour_analysis[12].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour12_6PM_intensity_val = response.analysis[6].hour_analysis[12].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour13_7PM_intensity_text = response.analysis[6].hour_analysis[13].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour13_7PM_intensity_val = response.analysis[6].hour_analysis[13].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour14_8PM_intensity_text = response.analysis[6].hour_analysis[14].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour14_8PM_intensity_val = response.analysis[6].hour_analysis[14].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour15_9PM_intensity_text = response.analysis[6].hour_analysis[15].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour15_9PM_intensity_val = response.analysis[6].hour_analysis[15].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour16_10PM_intensity_text = response.analysis[6].hour_analysis[16].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour16_10PM_intensity_val = response.analysis[6].hour_analysis[16].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour17_11PM_intensity_text = response.analysis[6].hour_analysis[17].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour17_11PM_intensity_val = response.analysis[6].hour_analysis[17].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour18_12AM_intensity_text = response.analysis[6].hour_analysis[18].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour18_12AM_intensity_val = response.analysis[6].hour_analysis[18].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour19_1AM_intensity_text = response.analysis[6].hour_analysis[19].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour19_1AM_intensity_val = response.analysis[6].hour_analysis[19].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour20_2AM_intensity_text = response.analysis[6].hour_analysis[20].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour20_2AM_intensity_val = response.analysis[6].hour_analysis[20].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour21_3AM_intensity_text = response.analysis[6].hour_analysis[21].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour21_3AM_intensity_val = response.analysis[6].hour_analysis[21].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour22_4AM_intensity_text = response.analysis[6].hour_analysis[22].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour22_4AM_intensity_val = response.analysis[6].hour_analysis[22].intensity_nr;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour23_5AM_intensity_text = response.analysis[6].hour_analysis[23].intensity_txt;
+            restaurants[currRestIndex].btSun6.hours_analysis.hour23_5AM_intensity_val = response.analysis[6].hour_analysis[23].intensity_nr;
+            currentRestaurant = restaurants[currRestIndex];
+            localStorage.setItem("currentRestaurant", JSON.stringify(currentRestaurant));      
+                   
+        });
+        console.log(currBTforecast);
+        localStorage.setItem("lsRestaurants", JSON.stringify(restaurants));
+    } else { 
+        console.log("Already been forecasted"); 
+        currBTforecast = localStorage.getItem(JSON.parse("currBTforecast"));
+    }
+    // window.location = "../HTML/detailsView.html";
+    window.open("../HTML/detailsView.html", "_blank");
+    localStorage.setItem("lsRestaurants", JSON.stringify(restaurants));
+});
 
-//Create a new currentRestaurant object
-//Check for forecast in restaurants of matching uid
-// Generate a forecast if not - store in currentRestaurant object and update restaurant object
-// Write the page based on the data in the object
-
-
-
-
-
+function saveRestaurants(r) {
 // ************** FIREBASE SCRIPT ************** //
-saveRestaurants(restaurants); //!
+// saveRestaurants(); 
 // The core Firebase JS SDK script src's that are always required and must be listed first
 // have been set in the HTML file for event listings.
 var firebaseConfig = {
@@ -1409,19 +1951,24 @@ var firebaseConfig = {
     messagingSenderId: "498989936909",
     appId: "1:498989936909:web:f3402179c901930a7e0044"
 };
-
-
-// !!! NOTE: we're continually getting an error that "firebase" is not defined. 
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-console.log('FIREBASE', firebase);
-var database = firebase.database();
-
-function saveRestaurants(restaurants) {
-    // for(i=0; i<700; i++) {
-    database.ref('restaurants/').set('restaurants/', null);
-// restaurants.forEach(function (restaurant) {
+    console.log('FIREBASE', firebase);
+    var database = firebase.database();
+saveRestaurants();
+    
+            // restaurants.forEach(function (restaurant) {
+            r = 2;
+            database.ref('restaurants/').set("restaurants");
+            // })
+            console.log('RESTAURANTS', restaurants);
+            setTimeout(() => {
+                database.ref('restaurants').once('value').then(function (snapshot) {
+                    var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
+                    console.log(restaurants);
+                });
+            }, 2000);
+        }
     // database.ref('/restaurants/').set(null, function(error) {
         // if (error) {
             // console.log("FB write failed");// The write failed...
@@ -1429,18 +1976,3 @@ function saveRestaurants(restaurants) {
             // console.log("Data saved successfully"); // Data saved successfully!
         // }
     // });           
-}
-
-    console.log('RESTAURANTS', restaurants);
-// function saveRestaurants(restaurants) {
-//     restaurants.forEach(function (restaurant) {
-//         database.ref('restaurants/').update(restaurant);
-//     })
-//     console.log('RESTAURANTS', restaurants);
-//     setTimeout(() => {
-//         database.ref('restaurants').once('value').then(function (snapshot) {
-//             var restaurants = (snapshot.val() && snapshot.val().restaurants) || 'Anonymous';
-//             console.log(restaurants);
-//         });
-//     }, 2000);
-// }
