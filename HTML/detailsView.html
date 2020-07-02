@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details View</title>
+    <link rel="stylesheet" href="../CSS/detailsView.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="../CSS/shared.css">
+    <link rel="stylesheet" href="../CSS/detailsView.css">
+    <link rel="stylesheet" href="../CSS/shared.css">
+=======
     <link rel="stylesheet" href="../CSS/detailsView.css">
 
+>>>>>>> master
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.common.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts-en.min.js"></script>
+<<<<<<< HEAD
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+=======
     <script src="../Javascript/utilityNav.js"></script>
     <script src="../Javascript/detailsView.js"></script>
+>>>>>>> master
 </head>
 <body>
 
@@ -88,10 +100,14 @@
                     <span id="star5full" class="is-hidden"><i id="star5fullIcon" class="material-icons tiny">star</i></span>&nbsp;<span class="mobileShow"><br></span>
                     <span id="deskAvgRatingTitle" class="pt-0 mt-0 mb-0 has-text-weight-bold has-text-right-tablet has-text-centered-mobile" style="line-height: 2;">AVERAGE RATING</span>
                 </div> <!-- End of Star Ratings -->
+                <div id="favorite" class="ml-0 pt-3 pb-2 px-3 red mt-4 mb-0 display-none" style="position: absolute; border: 2px solid #fff;">
+                    <i class="material-icons white-text small">favorite</i>
+                  </div>
                 <!-- **************** RESTAURANT IMAGE **************** -->
                 <div id="restImageDiv"> <!-- Restaurant Image Div -->
                     <img id="restImage" src="https://www.foodiesfeed.com/wp-content/uploads/2019/06/beautiful-vibrant-shot-of-traditional-korean-meals.jpg" width="100%";>
                 </div> <!-- END: Restaurant Image Div -->
+                
             </div> <!-- END: Image, Ratings Div -->
             
             <!-- **************** OPEN NOW + PRICE RANGE + RESTAURANT NAME + SAFETY RATING / INFO  **************** -->
@@ -101,7 +117,7 @@
                     <i id="openNowIcon" class="material-icons">watch_later</i> &nbsp; <!-- clock icon for Open Now Div & Span-->
                     <sup><strong>
                         <span id="openNowText">OPEN NOW</span> <!-- OPEN NOW SPAN - UPDATE THIS DYNAMICALLY.  WILL EITHER SAY "OPEN NOW" OR "CURRENTLY CLOSED" -->
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span id="priceRange">$$-$$$</span></strong> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span class="is-size-4" id="priceRange">$$-$$$</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>(PRICE-RANGE)</span>
                     </sup></strong>
                     <!-- **************** RESTAURANT NAME **************** -->
                     <div id="restaurantName"> <!-- Restaurant Name Div-->
@@ -109,26 +125,40 @@
                     </div> <!-- END: Restaurant Name Div-->
                 </div> <!-- END: Open Now Div & Span-->
 
-                <div class="columns is-gapless ml-4 mt-4"> <!-- Safety Rating Div Columns-Row -->
+                <div class="columns is-gapless ml-4 mt-4 mb-3 pb-6"> <!-- Safety Rating Div Columns-Row -->
                     <div class="column"> <!-- Left-side Safety Value Call-out Parent Container -->
                         <div id="safetyTextDiv"> <!-- Safety Rating Text Div -->
                             <!-- **************** SAFETY INFO TEXT **************** -->
                             <h5 id="at-this-time" class="is-size-6 mt-6 ml-4 mb-0 pb-0"><strong><span class="red-text">AT THIS TIME:</span></strong></h5>
                             <h4 id="safety-rating-text" class="is-size-3 ml-4 mt-0 pt-0" style="line-height: 1;">SAFETY RATING</h4>
-                            <div class="columns is-mobile is-gapless">
+                            <div class="columns is-mobile">
                                 <div class="column">
                                     <!-- **************** SAFETY RATING CALL-OUT **************** -->
                                     <div id="safetyRatingDiv" class="orange py-3"> <!-- Safety Value Call-out -->
-                                        <p class="is-size-1 has-text-centered"><strong><span id="safetyRatingSpan" class="has-text-white" style="font-size: 150%;">3.1</span></strong></p>
+                                        <p class="is-size-1 has-text-centered"><strong><span id="safetyRatingSpan" class="has-text-white px-6" style="font-size: 150%;"></span></strong></p>
                                     </div> <!-- Safety Value Call-out -->
                                     
                                 </div>
-                                <div class="column">
-                                    <h5 id="busy-right-now-callout" class="is-size-6 my-2 py-1"><strong><span id="percentBusy" class="white-text red px-1">31%</span> Busy Right Now</strong></h5>
-                                    <!-- **************** BUSIEST TIME **************** -->
-                                    <h5 id="busiest-time-callout" class="is-size-6 my-2 py-1"><strong>Busiest Time:&nbsp;<span id="busiestTime" class="white-text red px-1">8PM</span></strong></h5>
-                                    <!-- **************** SAFEST TIME **************** -->
-                                    <h5 id="safest-time-callout" class="is-size-6 my-2 py-1"><strong>Safest Time:&nbsp;<span id="safestTime" class="white-text green px-1 safestTime">3PM</span></strong></h5>
+                                <div class="column pl-2 pr-6 py-2 ">
+                                    <div>
+                                        <table id="bestTimeTable" max-width="100px" class="table is-narrow ">
+                                            <tr>
+                                                <td width="70%"><span id="nowTime" class=""><strong>The current time is:</strong></span></td>
+                                                <td width="30%" class=""><span id="now"></span></td>
+                                            </tr>
+                                            <!-- **************** BUSIEST TIME **************** -->
+                                            <tr>
+                                                <td width="70%"><span id="busyTime" class=""><strong>Busiest Time:</strong></span></td>
+                                                <td width="30%" class=""><span id="busy-call-out"><span id="busiestTime" class="white-text red px-1 busiestTime">3PM</span></span></td>
+                                            </tr>
+                                            <!-- **************** SAFEST TIME **************** -->
+                                            <tr>
+                                                <td width="70%"><span id="safeTime" class=""><strong>Safest Time:</strong></span></td>
+                                                <td width="30%" class=""><span id="safe-call-out"><span id="safestTime" class="white-text green px-1 safestTime">3PM</span></span></td>
+                                            </tr>
+                                        </table> 
+                                    </div> <!-- END: -->
+                                    <div class="column"></div>
                                 </div>
                             </div>
                         </div>
@@ -136,16 +166,16 @@
                 </div>
                 <div id="favoritesBtnDiv" class="">
                      <!-- **************** ADD FAVORITES BUTTON **************** -->
-                    <a id="addFavoriteBtn" class="waves-effect waves-light button is-large is-fullwidth red text-white"><i class="cta-btn material-icons left ">favorite</i>Add Favorite</a>
-                    <a id="removeFavoriteBtn" class="waves-effect waves-light button is-large is-fullwidth red text-white is-hidden"><i class="cta-btn material-icons left">favorite_border</i>Remove Favorite</a> 
+                    <a id="addFavoriteBtn" class="waves-effect waves-light button is-large is-fullwidth red text-white"><i class="cta-btn favb material-icons left ">favorite</i><span id="favtxt">Add Favorite</span></a>
+                    <a id="removeFavoriteBtn" class="waves-effect waves-light button is-large is-fullwidth red text-white is-hidden" style="margin-left=0px;"><i class="cta-btn material-icons left">favorite_border</i>Remove Favorite</a> 
                 </div>
                 <div id="seeMenuBtnDiv" class="">
                      <!-- **************** SEE MENU BUTTON **************** -->
-                    <a id="seeMenuBtn" class="waves-effect waves-light button is-large is-fullwidth red"><i class="cta-btn material-icons left">restaurant</i>See Menu</a>
+                    <a id="seeMenuBtn" class="waves-effect waves-light button is-large is-fullwidth red"><i class="cta-btn material-icons left">restaurant</i>Menu</a>
                 </div>
                 <div id="getDirectionsBtnDiv" class="">
                      <!-- **************** GET DIRECTIONS BUTTON **************** -->
-                    <a id="mapitBtn" class="waves-effect waves-light button is-large is-fullwidth red"><i class="cta-btn material-icons left">directions</i>Get Directions</a>
+                    <a id="mapitBtn" class="waves-effect waves-light button is-large is-fullwidth red"><i class="cta-btn material-icons left">directions</i>Directions</a>
                 </div>                 
             </div> <!-- END: #openSafetyBusyDiv-->
         </div> <!-- END: top of page columns -->
@@ -153,32 +183,33 @@
 
         <div class="columns mt-1 pt-1"> <!-- mid-page content columns -->
              <!-- **************** GOOGLE MAPS **************** -->
-            <div id="googleMap" class="column"> <!--- #googleMap DIV -->
-                <!-- Either actual maps image or sample maps image with be adjacent to this contact info, ID = #mapsDiv -->
+            <div id="googleMap" class="column">
+                <!-- #googleMap DIV -->
+                <!-- <div id="map" style="height: 100%;"></div> -->
                 <div id="mapsDiv" class="ml-3">
                     <img id="mapsImage" src="../assets/sampleMap.png" />
                 </div>
+                
             </div> <!--- END: #googleMap DIV -->
-
              <!-- **************** CONTACT DETAILS **************** -->
             <div id="contactDetailsDiv" class="column mx-2"> <!-- #contactDetailsDiv => Contact Details Div -->
                 <div class="columns">
                     <div class="column mx-0">
-                        <div class="mx-4 pt-1 "><h3 class="is-size-4-mobile is-size-2-desktop"><strong>Contact:</strong></h3>
+                        <div class="mx-4 pt-1 "><h3 class="is-size-5-mobile is-size-3-desktop"><strong>Contact:</strong></h3>
                              <!-- **************** PHONE **************** -->
                             <div>  
                                 <i class="material-icons is-size-3-desktop is-hidden-mobile">call</i><span class="is-hidden-mobile">&nbsp;</span>
-                                <span id="phoneNumber" class="is-size-5-mobile is-size-3-desktop">333-333-3333</span>
+                                <span id="phoneNumber" class="is-size-6-mobile is-size-4-desktop">333-333-3333</span>
                             </div>
                              <!-- **************** WEBSITE **************** -->
                             <div class="truncate">
                                 <i class="material-icons is-size-3-desktop is-hidden-mobile">language</i><span class="is-hidden-mobile">&nbsp;</span>
-                                <span id="restWebsite" class="is-size-5-mobile is-size-3-desktop"><a href="https://www.example.com">www.example.com</a></span>
+                                <span id="restWebsite" class="is-size-6-mobile is-size-4-desktop"><a href="https://www.example.com"></a>www.example.com</a></span>
                             </div>
                              <!-- **************** ADDRESS **************** -->
                             <div>
                                 <i class="material-icons is-size-3-desktop is-hidden-mobile">place</i><span class="is-hidden-mobile">&nbsp;</span>
-                                <span id="address" class="is-size-5-mobile is-size-3-desktop">123 Eatery Blvd. Raleigh, NC 28608</span>
+                                <span id="address" class="is-size-6-mobile is-size-4-desktop">123 Eatery Blvd. Raleigh, NC 28608</span>
                             </div>
                         </div>
                     </div>
@@ -321,6 +352,8 @@
 
 </footer>
 
+<script src="../Javascript/utilityNav.js"></script>
+<script src="../Javascript/detailsView.js"></script>
 
 </body>
 </html>

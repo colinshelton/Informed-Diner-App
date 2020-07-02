@@ -366,3 +366,7 @@ input[type=range]::-webkit-slider-thumb {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+.display-none {
+    display:none;
+}
